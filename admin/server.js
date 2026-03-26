@@ -30,6 +30,107 @@ function writeData(data) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
 
+// Original Framer case study slugs — these already have cards on the homepage
+const ORIGINAL_SLUGS = new Set(['articles/svaroots', 'broken-pots-2', 'emerald', 'origin']);
+
+/**
+ * Writes a <script id="admin-cards-data"> tag into index.html with JSON data
+ * for all admin-added case studies. A companion script reads this and injects
+ * cards into the DOM after Framer hydrates — bypassing React hydration issues.
+ */
+function injectAdminCardsScript(allCaseStudies) {
+  const indexPath = path.join(ROOT, 'index.html');
+  if (!fs.existsSync(indexPath)) return;
+
+  let indexHtml = fs.readFileSync(indexPath, 'utf8');
+
+  // Build list of admin-added (non-original) case studies
+  const newStudies = allCaseStudies
+    .filter(cs => !ORIGINAL_SLUGS.has(cs.slug))
+    .map(cs => ({
+      slug: cs.slug,
+      title: cs.meta?.title || cs.id,
+      coverImage: cs.coverImage || cs.meta?.ogImage || '',
+      description: cs.meta?.description || '',
+    }));
+
+  const scriptTag = `<script id="admin-cards-data" type="application/json">${JSON.stringify(newStudies)}</script>`;
+  const loaderScript = `<script id="admin-cards-loader">
+(function() {
+  function injectCards() {
+    var dataEl = document.getElementById('admin-cards-data');
+    if (!dataEl) return;
+    var studies = JSON.parse(dataEl.textContent || '[]');
+    if (!studies.length) return;
+
+    // Find the cards grid — look for the last anchor with "View Full Case Study"
+    var allLinks = document.querySelectorAll('a[aria-label*="View Full Case Study"]');
+    if (!allLinks.length) return;
+    var lastLink = allLinks[allLinks.length - 1];
+    var cardsContainer = lastLink.closest('[data-framer-name="Section Contnet"]') ||
+                         lastLink.parentElement.parentElement;
+    if (!cardsContainer) return;
+
+    studies.forEach(function(cs) {
+      // Skip if already injected
+      if (document.querySelector('a[href="/' + cs.slug + '"]')) return;
+
+      // Clone the last card
+      var lastCard = lastLink.closest('[class*="container"]') || lastLink.parentElement;
+      var clone = lastCard.cloneNode(true);
+
+      // Update the link href
+      var link = clone.querySelector('a[aria-label*="View Full Case Study"]') || clone.querySelector('a');
+      if (link) {
+        link.href = '/' + cs.slug;
+        link.setAttribute('aria-label', cs.title + ' \u2013 View Full Case Study');
+      }
+
+      // Update cover image if we have one
+      if (cs.coverImage) {
+        var imgs = clone.querySelectorAll('img');
+        if (imgs.length) imgs[0].src = cs.coverImage;
+      }
+
+      // Update text nodes — replace the project name (first meaningful text)
+      var spans = clone.querySelectorAll('span, p, h1, h2, h3');
+      var textNodes = Array.from(spans).filter(function(el) {
+        return el.children.length === 0 && el.textContent.trim().length > 1;
+      });
+      if (textNodes[0]) textNodes[0].textContent = cs.title.replace(' - Digvijay Portfolio', '');
+      if (textNodes[1] && cs.description) textNodes[1].textContent = cs.description;
+
+      cardsContainer.appendChild(clone);
+    });
+  }
+
+  // Run after Framer hydration (load event + rAF ensures React has rendered)
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(function() { requestAnimationFrame(injectCards); });
+  } else {
+    window.addEventListener('load', function() {
+      requestAnimationFrame(function() { requestAnimationFrame(injectCards); });
+    });
+  }
+})();
+</script>`;
+
+  // Remove old admin scripts if present
+  indexHtml = indexHtml
+    .replace(/<script id="admin-cards-data"[^>]*>[\s\S]*?<\/script>/g, '')
+    .replace(/<script id="admin-cards-loader">[\s\S]*?<\/script>/g, '');
+
+  // Inject before </body>
+  if (indexHtml.includes('</body>')) {
+    indexHtml = indexHtml.replace('</body>', scriptTag + loaderScript + '</body>');
+  } else {
+    indexHtml += scriptTag + loaderScript;
+  }
+
+  fs.writeFileSync(indexPath, indexHtml, 'utf8');
+  console.log(`✅ Homepage cards script updated (${newStudies.length} new case studies)`);
+}
+
 function runBuild(caseStudyId) {
   const { build } = require('../scripts/build.js');
   build(caseStudyId);
@@ -82,6 +183,7 @@ app.put('/api/case-studies/:id', (req, res) => {
     writeData(data);
 
     runBuild(req.params.id);
+    injectAdminCardsScript(data['case-studies']);
     res.json({ success: true, message: 'Saved and rebuilt successfully.' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -143,31 +245,8 @@ app.post('/api/case-studies', (req, res) => {
       );
     }
 
-    // Clone homepage card HTML from template and inject into index.html
-    if (template.homepageCardHtml) {
-      const oldSlugPath = `/${template.slug}`;
-      const newSlugPath = `/${slug}`;
-      const oldAriaLabel = template.meta.title || template.id;
-
-      let newCard = template.homepageCardHtml
-        .split(`href="${oldSlugPath}"`).join(`href="${newSlugPath}"`)
-        .split(`href="/${template.id}"`).join(`href="${newSlugPath}"`)
-        .split(`aria-label="${oldAriaLabel} – View Full Case Study"`).join(`aria-label="${newTitle} – View Full Case Study"`)
-        .split(`aria-label="${oldAriaLabel}"`).join(`aria-label="${newTitle}"`);
-
-      newEntry.homepageCardHtml = newCard;
-
-      const INJECT_MARKER = '<!--ADMIN_CARDS_END-->';
-      const indexPath = path.join(ROOT, 'index.html');
-      let indexHtml = fs.readFileSync(indexPath, 'utf8');
-      if (indexHtml.includes(INJECT_MARKER)) {
-        indexHtml = indexHtml.replace(INJECT_MARKER, newCard + INJECT_MARKER);
-        fs.writeFileSync(indexPath, indexHtml, 'utf8');
-        console.log(`✅ Injected card for "${id}" into index.html`);
-      } else {
-        console.warn('⚠️  Inject marker not found in index.html — run npm run extract first');
-      }
-    }
+    // Inject new case study into homepage via the admin cards script
+    injectAdminCardsScript(data['case-studies']);
 
     data['case-studies'].push(newEntry);
     writeData(data);
@@ -200,16 +279,8 @@ app.delete('/api/case-studies/:id', (req, res) => {
     const tplPath = path.join(ROOT, cs.templateFile);
     if (fs.existsSync(tplPath)) fs.unlinkSync(tplPath);
 
-    // Remove homepage card if it was admin-injected
-    if (cs.homepageCardHtml) {
-      const indexPath = path.join(ROOT, 'index.html');
-      let indexHtml = fs.readFileSync(indexPath, 'utf8');
-      if (indexHtml.includes(cs.homepageCardHtml)) {
-        indexHtml = indexHtml.replace(cs.homepageCardHtml, '');
-        fs.writeFileSync(indexPath, indexHtml, 'utf8');
-        console.log(`🗑 Removed card for "${req.params.id}" from index.html`);
-      }
-    }
+    // Update homepage cards script
+    injectAdminCardsScript(data['case-studies']);
 
     res.json({ success: true, message: `Deleted "${req.params.id}".` });
   } catch (err) {
@@ -221,6 +292,8 @@ app.delete('/api/case-studies/:id', (req, res) => {
 app.post('/api/build', (req, res) => {
   try {
     runBuild();
+    const data = readData();
+    injectAdminCardsScript(data['case-studies']);
     res.json({ success: true, message: 'All pages rebuilt successfully.' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -284,6 +357,12 @@ app.use('/preview-site', express.static(ROOT, {
 }));
 
 // ─── Start Server ────────────────────────────────────────────────────────────
+
+// Inject cards script on startup
+try {
+  const startupData = readData();
+  injectAdminCardsScript(startupData['case-studies']);
+} catch (e) { /* no data yet */ }
 
 app.listen(PORT, async () => {
   const url = `http://localhost:${PORT}`;
