@@ -49,9 +49,9 @@ function injectAdminCardsScript(allCaseStudies) {
     .filter(cs => !ORIGINAL_SLUGS.has(cs.slug))
     .map(cs => ({
       slug: cs.slug,
-      title: cs.meta?.title || cs.id,
-      coverImage: cs.coverImage || cs.meta?.ogImage || '',
-      description: cs.meta?.description || '',
+      title: cs.card?.name || cs.meta?.title?.replace(' - Digvijay Portfolio', '') || cs.id,
+      coverImage: cs.card?.thumbnail || cs.coverImage || cs.meta?.ogImage || '',
+      description: cs.card?.description || cs.card?.tagline || cs.meta?.description || '',
     }));
 
   const scriptTag = `<script id="admin-cards-data" type="application/json">${JSON.stringify(newStudies)}</script>`;
@@ -152,6 +152,7 @@ app.get('/api/case-studies', (req, res) => {
       title: cs.meta?.title || cs.id,
       coverImage: cs.coverImage || cs.meta?.ogImage || '',
       outputPath: cs.outputPath,
+      card: cs.card || null,
     }));
     res.json({ success: true, data: summary });
   } catch (err) {
@@ -217,23 +218,25 @@ app.post('/api/case-studies', (req, res) => {
     const outDir = path.join(ROOT, slug);
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
+    const card = req.body.card || null;
     const newEntry = {
       id,
       slug,
       outputPath,
       templateFile: `templates/${id}.html`,
-      coverImage: meta?.ogImage || template.coverImage || '',
+      coverImage: card?.thumbnail || meta?.ogImage || template.coverImage || '',
       meta: {
         title: meta?.title || `${id} - Digvijay Portfolio`,
         description: meta?.description || template.meta.description,
         ogTitle: meta?.title || `${id} - Digvijay Portfolio`,
         ogDescription: meta?.description || template.meta.ogDescription,
-        ogImage: meta?.ogImage || template.meta.ogImage,
+        ogImage: card?.thumbnail || meta?.ogImage || template.meta.ogImage,
         canonical: template.meta.canonical,
       },
       _originalMeta: { ...template._originalMeta },
       contentMap: template.contentMap.map(e => ({ ...e })),
       imageMap: template.imageMap.map(e => ({ ...e })),
+      card,
     };
 
     // Apply the new title to the content map if it appears
@@ -283,6 +286,66 @@ app.delete('/api/case-studies/:id', (req, res) => {
     injectAdminCardsScript(data['case-studies']);
 
     res.json({ success: true, message: `Deleted "${req.params.id}".` });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET homepage meta (read from index.html)
+app.get('/api/homepage', (req, res) => {
+  try {
+    const indexPath = path.join(ROOT, 'index.html');
+    const html = fs.readFileSync(indexPath, 'utf8');
+    const get = (pattern) => html.match(pattern)?.[1] || '';
+    res.json({
+      success: true,
+      data: {
+        title:       get(/<title>(.*?)<\/title>/),
+        description: get(/<meta\s+name="description"\s+content="([^"]*)"/),
+        ogTitle:     get(/<meta\s+property="og:title"\s+content="([^"]*)"/),
+        ogDescription: get(/<meta\s+property="og:description"\s+content="([^"]*)"/),
+        ogImage:     get(/<meta\s+property="og:image"\s+content="([^"]*)"/),
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// PUT homepage meta (write back into index.html)
+app.put('/api/homepage', (req, res) => {
+  try {
+    const indexPath = path.join(ROOT, 'index.html');
+    let html = fs.readFileSync(indexPath, 'utf8');
+    const { title, description, ogTitle, ogDescription, ogImage } = req.body;
+
+    const enc = s => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+    if (title)
+      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+    if (description)
+      html = html.replace(
+        /(<meta\s+name="description"\s+content=")[^"]*(")/,
+        `$1${enc(description)}$2`
+      );
+    if (ogTitle)
+      html = html.replace(
+        /(<meta\s+property="og:title"\s+content=")[^"]*(")/,
+        `$1${enc(ogTitle)}$2`
+      );
+    if (ogDescription)
+      html = html.replace(
+        /(<meta\s+property="og:description"\s+content=")[^"]*(")/,
+        `$1${enc(ogDescription)}$2`
+      );
+    if (ogImage)
+      html = html.replace(
+        /(<meta\s+property="og:image"\s+content=")[^"]*(")/,
+        `$1${enc(ogImage)}$2`
+      );
+
+    fs.writeFileSync(indexPath, html, 'utf8');
+    res.json({ success: true, message: 'Homepage meta updated.' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

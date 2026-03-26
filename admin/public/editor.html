@@ -3,509 +3,517 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Case Study · Portfolio Admin</title>
+  <title>Edit · Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .content-row { display: grid; grid-template-columns: 220px 1fr; gap: 8px; align-items: center; border-bottom: 1px solid var(--border); padding: 8px 0; }
-    .content-row:last-child { border-bottom: none; }
-    .content-row-label { font-size: 12px; color: var(--text-muted); word-break: break-word; padding-right: 8px; }
-    .content-row input { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; background: var(--surface2); }
-    .content-row input:focus { border-color: var(--border-focus); background: white; outline: none; }
-    .filter-bar { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; }
-    .filter-bar input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; }
-    .img-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 10px; align-items: center; border-bottom: 1px solid var(--border); padding: 10px 0; }
-    .img-row:last-child { border-bottom: none; }
-    .img-preview-sm { width: 72px; height: 56px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #f0f0f0; }
-    .cloudinary-btn { padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; cursor: pointer; background: white; white-space: nowrap; flex-shrink: 0; }
-    .cloudinary-btn:hover { background: var(--bg); }
-    .changed-badge { display: inline-block; width: 6px; height: 6px; background: var(--warning); border-radius: 50%; margin-left: 6px; }
-  </style>
 </head>
 <body>
-<div class="layout">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <h2>Portfolio Admin</h2>
-      <span>Digvijay · v1.0</span>
+
+<!-- ── Topbar ───────────────────────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">P</div>
+    Portfolio
+  </div>
+  <nav class="topbar-nav">
+    <a href="index.html">Pages</a>
+    <a href="homepage.html">Homepage</a>
+    <a href="deploy.html">Deploy</a>
+    <a href="setup.html">Setup</a>
+  </nav>
+  <div class="topbar-right">
+    <a id="preview-link" href="#" target="_blank" class="btn btn-ghost btn-sm">Preview ↗</a>
+    <button class="btn btn-secondary btn-sm" onclick="saveAndBuild(false)" id="save-btn">Save</button>
+    <button class="btn btn-primary btn-sm" onclick="saveAndDeploy()" id="deploy-btn">▲ Deploy</button>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+  <!-- ── Editor sub-bar ─────────────────────────────────── -->
+  <div class="editor-bar">
+    <div class="breadcrumb">
+      <a href="index.html">Pages</a>
+      <span class="sep">/</span>
+      <span class="cur" id="page-name">Loading…</span>
     </div>
-    <nav class="sidebar-nav">
-      <a href="index.html" class="nav-item"><span class="icon">📋</span> Case Studies</a>
-      <a href="deploy.html" class="nav-item"><span class="icon">🚀</span> Deploy</a>
-      <a href="setup.html" class="nav-item"><span class="icon">⚙️</span> Setup</a>
-    </nav>
-  </aside>
+    <span id="unsaved-top" class="unsaved-label" style="display:none">● Unsaved</span>
+  </div>
 
-  <!-- Main -->
-  <main class="main" style="padding-bottom: 80px;">
-    <a href="index.html" class="back-link">← Back to Case Studies</a>
+  <!-- ── Tabs ───────────────────────────────────────────── -->
+  <div class="tabs-bar" style="top: calc(var(--topbar-h) + 42px)">
+    <button class="tab-btn active" data-tab="meta"    onclick="switchTab('meta',this)">Page Info</button>
+    <button class="tab-btn"        data-tab="content" onclick="switchTab('content',this)">Text Content</button>
+    <button class="tab-btn"        data-tab="images"  onclick="switchTab('images',this)">Images</button>
+    <button class="tab-btn"        data-tab="card"    onclick="switchTab('card',this)">Homepage Card</button>
+  </div>
 
-    <div class="page-header">
-      <div>
-        <h1 class="page-title" id="page-title">Loading...</h1>
-        <p class="page-subtitle" id="page-slug"></p>
-      </div>
-      <div style="display:flex;gap:10px;">
-        <a id="preview-link" href="#" target="_blank" class="btn btn-secondary">👁 Preview</a>
-      </div>
-    </div>
+  <!-- ── Tab: Page Info ─────────────────────────────────── -->
+  <div class="tab-panel active" id="tab-meta">
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab('meta')">📄 Page Info</div>
-      <div class="tab" onclick="switchTab('content')">✏️ Text Content</div>
-      <div class="tab" onclick="switchTab('images')">🖼️ Images</div>
-    </div>
-
-    <!-- Tab: Meta -->
-    <div class="tab-panel active" id="tab-meta">
-      <div class="form-section">
-        <div class="form-section-title">SEO & Page Metadata</div>
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">SEO & Metadata</div></div>
+      <div class="form-section-body">
         <div class="form-group">
-          <label>Page Title <span class="hint">(shown in browser tab and Google)</span></label>
-          <input type="text" id="meta-title" placeholder="My Case Study - Digvijay Portfolio" />
+          <label>Page Title <span class="hint">· browser tab + Google</span></label>
+          <input type="text" id="meta-title" placeholder="My Case Study - Digvijay Portfolio" oninput="markChanged()" />
         </div>
         <div class="form-group">
-          <label>Meta Description <span class="hint">(shown in Google search results)</span></label>
-          <textarea id="meta-description" rows="2" placeholder="A short description of this case study..."></textarea>
+          <label>Meta Description <span class="hint">· Google search snippet</span></label>
+          <textarea id="meta-description" rows="3" placeholder="A brief description of this case study…" oninput="markChanged()"></textarea>
         </div>
-        <div class="form-group">
-          <label>OG Title <span class="hint">(shown when shared on social media)</span></label>
-          <input type="text" id="meta-og-title" placeholder="Same as page title usually" />
-        </div>
-        <div class="form-group">
-          <label>OG Description</label>
-          <textarea id="meta-og-description" rows="2" placeholder="Description for social sharing..."></textarea>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <div class="form-section-title">Cover / Social Share Image</div>
-        <div class="form-group">
-          <label>Cover Image URL <span class="hint">(used as OG image on social media)</span></label>
-          <div class="image-field">
-            <div style="flex:1">
-              <input type="url" id="meta-og-image" placeholder="https://..." oninput="updateCoverPreview()" />
-              <button class="upload-btn" onclick="uploadImage('meta-og-image')">☁️ Upload to Cloudinary</button>
-            </div>
-            <div class="image-preview-wrap">
-              <img id="cover-preview" class="image-preview hidden" src="" alt="Cover preview" />
-            </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>OG Title <span class="hint">· social sharing</span></label>
+            <input type="text" id="meta-og-title" placeholder="Same as page title" oninput="markChanged()" />
+          </div>
+          <div class="form-group">
+            <label>OG Description</label>
+            <input type="text" id="meta-og-description" placeholder="Same as meta description" oninput="markChanged()" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tab: Content -->
-    <div class="tab-panel" id="tab-content">
-      <div class="form-section">
-        <div class="form-section-title">Text Content</div>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
-          These are all the text strings found in your case study. Edit the right-hand column.
-          The original text is shown on the left for reference.
-        </p>
-        <div class="filter-bar">
-          <input type="text" id="content-filter" placeholder="🔍 Filter content..." oninput="filterContent()" />
-          <button class="btn btn-ghost btn-sm" onclick="resetAllContent()">Reset All</button>
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">Cover / Social Image</div></div>
+      <div class="form-section-body">
+        <div class="form-group">
+          <label>Image URL <span class="hint">· used as OG image when shared</span></label>
+          <div style="display:flex;gap:8px">
+            <input type="url" id="meta-og-image" placeholder="https://…"
+              oninput="updateCoverPreview(); markChanged()" />
+            <button class="btn btn-secondary btn-sm" onclick="uploadImage('meta-og-image')" style="flex-shrink:0">Upload</button>
+          </div>
+          <img id="cover-preview" class="hidden"
+            style="margin-top:10px;border-radius:8px;max-height:130px;object-fit:cover;max-width:240px" />
         </div>
-        <div id="content-list"></div>
       </div>
     </div>
 
-    <!-- Tab: Images -->
-    <div class="tab-panel" id="tab-images">
-      <div class="form-section">
-        <div class="form-section-title">Image URLs</div>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
-          Replace any image by entering a new URL or uploading to Cloudinary.
-          Existing Framer CDN images work fine — only change these if you want new images.
-        </p>
-        <div id="image-list"></div>
-      </div>
-    </div>
+  </div>
 
-    <!-- Sticky bottom actions -->
-    <div class="sticky-actions">
-      <div class="sticky-actions-left">
-        <button class="btn btn-danger btn-sm" onclick="confirmDelete()">🗑 Delete</button>
+  <!-- ── Tab: Text Content ──────────────────────────────── -->
+  <div class="tab-panel" id="tab-content">
+    <div class="filter-row">
+      <input type="text" id="content-filter" placeholder="Filter content…" oninput="filterContent()" />
+      <button class="btn btn-ghost btn-sm" onclick="resetAllContent()">Reset All</button>
+    </div>
+    <div class="content-list" id="content-list"></div>
+  </div>
+
+  <!-- ── Tab: Images ────────────────────────────────────── -->
+  <div class="tab-panel" id="tab-images">
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:16px">
+      Replace images by pasting a new URL or uploading to Cloudinary.
+      Original Framer CDN images still work fine — only change these if you want new images.
+    </p>
+    <div class="image-list" id="image-list"></div>
+  </div>
+
+  <!-- ── Tab: Homepage Card ─────────────────────────────── -->
+  <div class="tab-panel" id="tab-card">
+    <div id="card-framer-note" class="hidden" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:14px;font-size:12px;color:var(--text-2);line-height:1.6">
+      This is an original Framer case study — the homepage card is baked into the Framer design.
+      The fields below are pre-filled but <strong style="color:var(--text)">cannot be changed</strong> from here.
+      Re-export from Framer to update the original cards.
+    </div>
+    <div class="form-section">
+      <div class="form-section-head">
+        <div class="form-section-title">Card on Homepage</div>
       </div>
-      <div class="sticky-actions-right">
-        <span class="save-indicator" id="save-indicator"></span>
-        <button class="btn btn-secondary" onclick="saveAndBuild(false)" id="save-btn">Save</button>
-        <button class="btn btn-primary" onclick="saveAndDeploy()" id="deploy-btn">Save & Deploy 🚀</button>
+      <div class="form-section-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Display Name</label>
+            <input type="text" id="card-name" placeholder="Project Name" oninput="markChanged()" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="card-category" placeholder="UX Design" oninput="markChanged()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tagline <span class="hint">· one-liner on card</span></label>
+          <input type="text" id="card-tagline" placeholder="A short tagline…" oninput="markChanged()" />
+        </div>
+        <div class="form-group">
+          <label>Description <span class="hint">· 2–3 sentences</span></label>
+          <textarea id="card-description" rows="3" oninput="markChanged()"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Thumbnail</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="card-thumbnail" placeholder="https://…"
+              oninput="updateCardThumbPreview(); markChanged()" />
+            <button class="btn btn-secondary btn-sm" onclick="uploadImage('card-thumbnail')" style="flex-shrink:0">Upload</button>
+          </div>
+          <img id="card-thumb-preview" class="hidden"
+            style="margin-top:8px;border-radius:6px;max-height:90px;object-fit:cover;width:100%" />
+        </div>
+        <div class="form-group">
+          <label>Background Color</label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" id="card-bg" placeholder="#f0f0f0" style="width:110px;flex-shrink:0" oninput="markChanged()" />
+            <input type="color" id="card-bg-picker" value="#f0f0f0"
+              style="width:38px;height:36px;padding:2px 6px;flex-shrink:0;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer"
+              oninput="document.getElementById('card-bg').value=this.value; markChanged()" />
+          </div>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
+
+  <!-- ── Save bar ────────────────────────────────────────── -->
+  <div class="save-bar">
+    <div class="save-bar-l">
+      <button class="btn btn-danger btn-sm" onclick="confirmDelete()">Delete</button>
+    </div>
+    <div class="save-bar-r">
+      <span id="unsaved-bar" class="unsaved-label" style="display:none">● Unsaved changes</span>
+      <button class="btn btn-secondary" onclick="saveAndBuild(false)" id="save-btn-bar">Save</button>
+      <button class="btn btn-primary"   onclick="saveAndDeploy()"     id="deploy-btn-bar">▲ Save & Deploy</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- Delete confirm modal -->
+<!-- ── Delete Modal ──────────────────────────────────────── -->
 <div class="modal-overlay hidden" id="delete-modal">
   <div class="modal">
-    <h3>Delete Case Study?</h3>
-    <p>This will permanently delete the case study and all its files. This cannot be undone.</p>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="document.getElementById('delete-modal').classList.add('hidden')">Cancel</button>
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Delete this case study?</div>
+        <div class="modal-desc">Permanently removes all files. Cannot be undone.</div>
+      </div>
+      <button class="modal-x" onclick="closeDeleteModal()">✕</button>
+    </div>
+    <div class="modal-foot" style="padding-top:8px">
+      <button class="btn btn-ghost" onclick="closeDeleteModal()">Cancel</button>
       <button class="btn btn-danger" onclick="deleteCaseStudy()">Delete Permanently</button>
     </div>
   </div>
 </div>
 
-<!-- Cloudinary upload widget (hidden) -->
 <input type="file" id="file-upload" accept="image/*" style="display:none" />
-
-<!-- Toast container -->
-<div class="toast-container" id="toasts"></div>
+<div id="toasts"></div>
 
 <script>
-// ── Config ─────────────────────────────────────────────────
-// IMPORTANT: Set your Cloudinary cloud name and unsigned upload preset here
-// after running: npm run admin → Setup tab has instructions
-const CLOUDINARY_CLOUD_NAME = localStorage.getItem('cloudinary_cloud') || '';
-const CLOUDINARY_UPLOAD_PRESET = localStorage.getItem('cloudinary_preset') || '';
-
 // ── State ──────────────────────────────────────────────────
 const params = new URLSearchParams(location.search);
-const caseStudyId = params.get('id');
-let caseStudy = null;
-let pendingImageTarget = null;
+const csId   = params.get('id');
+const FRAMER  = new Set(['svaroots','broken-pots-2','emerald','origin']);
+let cs = null;
+let pendingUpload = null;
 
 // ── Load ───────────────────────────────────────────────────
 async function load() {
-  if (!caseStudyId) {
-    showToast('No case study ID provided', 'error');
-    return;
-  }
-
+  if (!csId) { showToast('No case study ID', 'error'); return; }
   try {
-    const res = await fetch(`/api/case-studies/${caseStudyId}`);
-    const data = await res.json();
-    if (!data.success) { showToast('Case study not found', 'error'); return; }
-    caseStudy = data.data;
+    const r = await fetch(`/api/case-studies/${csId}`);
+    const d = await r.json();
+    if (!d.success) { showToast('Case study not found', 'error'); return; }
+    cs = d.data;
     render();
-  } catch (e) {
-    showToast('Failed to load', 'error');
-  }
+  } catch { showToast('Failed to load', 'error'); }
 }
 
 function render() {
-  document.title = `Edit: ${caseStudy.meta?.title || caseStudy.id} · Admin`;
-  document.getElementById('page-title').textContent = caseStudy.meta?.title || caseStudy.id;
-  document.getElementById('page-slug').textContent = `/${caseStudy.slug}`;
-  document.getElementById('preview-link').href = `/preview-site/${caseStudy.outputPath}`;
+  const isFr = FRAMER.has(cs.id);
+  document.title = `${cs.meta?.title?.replace(' - Digvijay Portfolio','') || cs.id} · Edit`;
+  document.getElementById('page-name').textContent = cs.meta?.title?.replace(' - Digvijay Portfolio','') || cs.id;
+  document.getElementById('preview-link').href = `/preview-site/${cs.outputPath}`;
 
-  // Meta tab
-  document.getElementById('meta-title').value = caseStudy.meta?.title || '';
-  document.getElementById('meta-description').value = caseStudy.meta?.description || '';
-  document.getElementById('meta-og-title').value = caseStudy.meta?.ogTitle || caseStudy.meta?.title || '';
-  document.getElementById('meta-og-description').value = caseStudy.meta?.ogDescription || caseStudy.meta?.description || '';
-  document.getElementById('meta-og-image').value = caseStudy.meta?.ogImage || caseStudy.coverImage || '';
+  // ── Meta tab
+  document.getElementById('meta-title').value          = cs.meta?.title          || '';
+  document.getElementById('meta-description').value    = cs.meta?.description    || '';
+  document.getElementById('meta-og-title').value       = cs.meta?.ogTitle        || cs.meta?.title || '';
+  document.getElementById('meta-og-description').value = cs.meta?.ogDescription  || cs.meta?.description || '';
+  document.getElementById('meta-og-image').value       = cs.meta?.ogImage        || cs.coverImage || '';
   updateCoverPreview();
 
-  // Content tab
+  // ── Content tab
   renderContentList();
 
-  // Images tab
+  // ── Images tab
   renderImageList();
+
+  // ── Card tab
+  const card = cs.card || {};
+  document.getElementById('card-name').value        = card.name        || cs.meta?.title?.replace(' - Digvijay Portfolio','') || cs.id;
+  document.getElementById('card-category').value    = card.category    || '';
+  document.getElementById('card-tagline').value     = card.tagline     || '';
+  document.getElementById('card-description').value = card.description || cs.meta?.description || '';
+  document.getElementById('card-thumbnail').value   = card.thumbnail   || cs.coverImage || '';
+  document.getElementById('card-bg').value          = card.bgColor     || '#f0f0f0';
+  document.getElementById('card-bg-picker').value   = card.bgColor     || '#f0f0f0';
+  updateCardThumbPreview();
+
+  if (isFr) {
+    document.getElementById('card-framer-note').classList.remove('hidden');
+    ['card-name','card-category','card-tagline','card-description','card-thumbnail','card-bg','card-bg-picker'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.disabled = true;
+    });
+  }
 }
 
+// ── Content list ───────────────────────────────────────────
 function renderContentList(filter = '') {
-  const list = document.getElementById('content-list');
-  const items = (caseStudy.contentMap || []).filter(e =>
-    !filter || e.original.toLowerCase().includes(filter.toLowerCase()) || e.current.toLowerCase().includes(filter.toLowerCase())
+  const list  = document.getElementById('content-list');
+  const items = (cs.contentMap || []).filter(e =>
+    !filter ||
+    e.original.toLowerCase().includes(filter.toLowerCase()) ||
+    e.current.toLowerCase().includes(filter.toLowerCase())
   );
 
-  if (items.length === 0) {
-    list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0;">No text blocks found.</p>';
+  if (!items.length) {
+    list.innerHTML = '<div class="empty-state"><h3>No text blocks found</h3><p>Try clearing the filter.</p></div>';
     return;
   }
 
-  list.innerHTML = items.map((entry, idx) => {
-    const globalIdx = caseStudy.contentMap.indexOf(entry);
-    const changed = entry.original !== entry.current;
+  list.innerHTML = items.map(e => {
+    const gi      = cs.contentMap.indexOf(e);
+    const changed = e.original !== e.current;
     return `
-      <div class="content-row">
-        <div class="content-row-label" title="${escHtml(entry.original)}">
-          ${escHtml(entry.label || entry.original.slice(0, 60))}
-          ${changed ? '<span class="changed-badge" title="Modified"></span>' : ''}
-        </div>
-        <input
-          type="text"
-          value="${escHtml(entry.current)}"
-          data-idx="${globalIdx}"
-          onchange="updateContent(${globalIdx}, this.value)"
-          title="Original: ${escHtml(entry.original)}"
-        />
+    <div class="c-item${changed ? ' modified' : ''}" id="ci-${gi}">
+      <div class="c-orig">
+        ${changed ? '<span class="mod-dot"></span>' : ''}
+        ${escHtml(e.label || e.original.slice(0, 60))}
       </div>
-    `;
+      <input type="text"
+        value="${escHtml(e.current)}"
+        title="Original: ${escHtml(e.original)}"
+        onchange="updateContent(${gi}, this)"
+      />
+    </div>`;
   }).join('');
 }
 
+function updateContent(gi, input) {
+  cs.contentMap[gi].current = input.value;
+  const row = document.getElementById(`ci-${gi}`);
+  if (row) {
+    const changed = cs.contentMap[gi].original !== input.value;
+    row.classList.toggle('modified', changed);
+    const dot = row.querySelector('.mod-dot');
+    if (changed && !dot) {
+      const orig = row.querySelector('.c-orig');
+      orig.insertAdjacentHTML('afterbegin', '<span class="mod-dot"></span>');
+    } else if (!changed && dot) {
+      dot.remove();
+    }
+  }
+  markChanged();
+}
+
+// ── Image list ─────────────────────────────────────────────
 function renderImageList() {
-  const list = document.getElementById('image-list');
-  const items = caseStudy.imageMap || [];
-
-  if (items.length === 0) {
-    list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No images found.</p>';
+  const list  = document.getElementById('image-list');
+  const items = cs.imageMap || [];
+  if (!items.length) {
+    list.innerHTML = '<div class="empty-state"><h3>No images found</h3></div>';
     return;
   }
-
-  list.innerHTML = items.map((entry, idx) => {
-    const changed = entry.original !== entry.current;
-    return `
-      <div class="img-row">
-        <img class="img-preview-sm" src="${escHtml(entry.current)}" onerror="this.src=''" alt="" />
-        <input
-          type="url"
-          value="${escHtml(entry.current)}"
-          data-idx="${idx}"
-          onchange="updateImage(${idx}, this.value)"
-          onblur="refreshImgPreview(this)"
-          placeholder="https://..."
-        />
-        <button class="cloudinary-btn" onclick="uploadImage(null, ${idx})">☁️ Upload</button>
-      </div>
-    `;
-  }).join('');
+  list.innerHTML = items.map((e, i) => `
+    <div class="img-item">
+      <img class="img-thumb" src="${escHtml(e.current)}" onerror="this.src=''" alt="" />
+      <input type="url" value="${escHtml(e.current)}" placeholder="https://…"
+        onchange="cs.imageMap[${i}].current = this.value; markChanged()"
+        onblur="this.previousElementSibling.src = this.value" />
+      <button class="btn btn-secondary btn-sm" onclick="uploadImage(null, ${i})" style="flex-shrink:0">Upload</button>
+    </div>`).join('');
 }
 
-// ── Edit handlers ──────────────────────────────────────────
-
-function updateContent(idx, value) {
-  caseStudy.contentMap[idx].current = value;
-  markChanged();
-}
-
-function updateImage(idx, value) {
-  caseStudy.imageMap[idx].current = value;
-  markChanged();
-}
-
-function filterContent() {
-  const filter = document.getElementById('content-filter').value;
-  renderContentList(filter);
-}
+// ── Filter & reset ─────────────────────────────────────────
+function filterContent() { renderContentList(document.getElementById('content-filter').value); }
 
 function resetAllContent() {
-  if (!confirm('Reset all text content to the original Framer values?')) return;
-  caseStudy.contentMap = caseStudy.contentMap.map(e => ({ ...e, current: e.original }));
+  if (!confirm('Reset all text to original Framer values?')) return;
+  cs.contentMap = cs.contentMap.map(e => ({ ...e, current: e.original }));
   renderContentList();
   markChanged();
 }
 
+// ── Preview helpers ────────────────────────────────────────
 function updateCoverPreview() {
   const url = document.getElementById('meta-og-image').value.trim();
-  const preview = document.getElementById('cover-preview');
-  if (url) {
-    preview.src = url;
-    preview.classList.remove('hidden');
-  } else {
-    preview.classList.add('hidden');
-  }
+  const img = document.getElementById('cover-preview');
+  if (url) { img.src = url; img.classList.remove('hidden'); } else img.classList.add('hidden');
 }
 
-function refreshImgPreview(input) {
-  const row = input.closest('.img-row');
-  const img = row.querySelector('.img-preview-sm');
-  img.src = input.value;
+function updateCardThumbPreview() {
+  const url = document.getElementById('card-thumbnail').value.trim();
+  const img = document.getElementById('card-thumb-preview');
+  if (url) { img.src = url; img.classList.remove('hidden'); } else img.classList.add('hidden');
 }
 
-// ── Cloudinary upload ──────────────────────────────────────
-
-function uploadImage(inputId, imgIdx) {
-  const cloudName = localStorage.getItem('cloudinary_cloud') || '';
-  const preset = localStorage.getItem('cloudinary_preset') || '';
-
-  if (!cloudName || !preset) {
-    showToast('Set up Cloudinary first in the Setup tab', 'error');
-    window.open('setup.html', '_blank');
-    return;
-  }
-
-  pendingImageTarget = { inputId, imgIdx };
-  const fileInput = document.getElementById('file-upload');
-  fileInput.value = '';
-  fileInput.onchange = handleFileUpload;
-  fileInput.click();
+// ── Tabs ───────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`tab-${name}`).classList.add('active');
 }
 
-async function handleFileUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const cloudName = localStorage.getItem('cloudinary_cloud');
-  const preset = localStorage.getItem('cloudinary_preset');
-
-  showToast('Uploading image...', 'info');
-
-  try {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', preset);
-
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
-
-    if (data.secure_url) {
-      const url = data.secure_url;
-      const { inputId, imgIdx } = pendingImageTarget || {};
-
-      if (inputId) {
-        document.getElementById(inputId).value = url;
-        if (inputId === 'meta-og-image') updateCoverPreview();
-      } else if (imgIdx !== null && imgIdx !== undefined) {
-        const inputs = document.querySelectorAll('#image-list input[type="url"]');
-        inputs[imgIdx].value = url;
-        updateImage(imgIdx, url);
-        renderImageList();
-      }
-      markChanged();
-      showToast('Image uploaded!', 'success');
-    } else {
-      showToast(data.error?.message || 'Upload failed', 'error');
-    }
-  } catch (err) {
-    showToast('Upload failed: ' + err.message, 'error');
-  }
+// ── Unsaved indicator ──────────────────────────────────────
+function markChanged() {
+  document.getElementById('unsaved-top').style.display = 'inline';
+  document.getElementById('unsaved-bar').style.display = 'inline';
 }
 
-// ── Save & Deploy ──────────────────────────────────────────
+function clearChanged() {
+  document.getElementById('unsaved-top').style.display = 'none';
+  document.getElementById('unsaved-bar').style.display = 'none';
+}
 
+// ── Collect data ───────────────────────────────────────────
 function collectData() {
+  const isFr = FRAMER.has(cs.id);
   return {
-    ...caseStudy,
-    coverImage: document.getElementById('meta-og-image').value.trim(),
+    ...cs,
+    coverImage: document.getElementById('meta-og-image').value.trim() || document.getElementById('card-thumbnail').value.trim() || cs.coverImage,
     meta: {
-      ...caseStudy.meta,
-      title: document.getElementById('meta-title').value.trim(),
-      description: document.getElementById('meta-description').value.trim(),
-      ogTitle: document.getElementById('meta-og-title').value.trim() || document.getElementById('meta-title').value.trim(),
-      ogDescription: document.getElementById('meta-og-description').value.trim() || document.getElementById('meta-description').value.trim(),
-      ogImage: document.getElementById('meta-og-image').value.trim(),
+      ...cs.meta,
+      title:           document.getElementById('meta-title').value.trim(),
+      description:     document.getElementById('meta-description').value.trim(),
+      ogTitle:         document.getElementById('meta-og-title').value.trim()       || document.getElementById('meta-title').value.trim(),
+      ogDescription:   document.getElementById('meta-og-description').value.trim() || document.getElementById('meta-description').value.trim(),
+      ogImage:         document.getElementById('meta-og-image').value.trim(),
+    },
+    card: isFr ? (cs.card || null) : {
+      name:        document.getElementById('card-name').value.trim(),
+      category:    document.getElementById('card-category').value.trim(),
+      tagline:     document.getElementById('card-tagline').value.trim(),
+      description: document.getElementById('card-description').value.trim(),
+      thumbnail:   document.getElementById('card-thumbnail').value.trim(),
+      bgColor:     document.getElementById('card-bg').value.trim(),
     },
   };
 }
 
+// ── Save ───────────────────────────────────────────────────
 async function saveAndBuild(quiet = false) {
-  const btn = document.getElementById('save-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Saving...';
-
+  setSaving(true);
   try {
-    const payload = collectData();
-    const res = await fetch(`/api/case-studies/${caseStudyId}`, {
+    const r = await fetch(`/api/case-studies/${csId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(collectData()),
     });
-    const data = await res.json();
-    if (data.success) {
-      if (!quiet) showToast('Saved and rebuilt!', 'success');
-      document.getElementById('save-indicator').textContent = '';
-      caseStudy = payload;
-    } else {
-      showToast(data.error || 'Save failed', 'error');
-    }
-  } catch (err) {
-    showToast('Server error', 'error');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Save';
-  }
+    const d = await r.json();
+    if (d.success) {
+      if (!quiet) showToast('Saved!', 'success');
+      clearChanged();
+      cs = collectData();
+    } else showToast(d.error || 'Save failed', 'error');
+  } catch { showToast('Server error', 'error'); }
+  finally { setSaving(false); }
 }
 
+function setSaving(on) {
+  const text = on ? '<span class="spin"></span>' : 'Save';
+  ['save-btn','save-btn-bar'].forEach(id => {
+    const el = document.getElementById(id);
+    el.disabled = on;
+    el.innerHTML = text;
+  });
+}
+
+// ── Deploy ─────────────────────────────────────────────────
 async function saveAndDeploy() {
+  setDeploying(true);
   await saveAndBuild(true);
-
-  const btn = document.getElementById('deploy-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Deploying...';
-
   try {
-    const res = await fetch('/api/deploy', {
+    const r = await fetch('/api/deploy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: `Update ${caseStudyId} case study` }),
+      body: JSON.stringify({ message: `Update ${csId} case study` }),
     });
-    const data = await res.json();
-    if (data.success) {
-      showToast(data.message, 'success');
-    } else {
-      showToast(data.error || 'Deploy failed', 'error');
-      if (data.error?.includes('Git not set up')) {
-        setTimeout(() => { window.location.href = 'setup.html'; }, 2000);
-      }
+    const d = await r.json();
+    if (d.success) showToast(d.message, 'success');
+    else {
+      showToast(d.error || 'Deploy failed', 'error');
+      if (d.error?.includes('Git')) setTimeout(() => window.location.href = 'setup.html', 2000);
     }
-  } catch (err) {
-    showToast('Deploy failed: ' + err.message, 'error');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Save & Deploy 🚀';
-  }
+  } catch { showToast('Deploy failed', 'error'); }
+  finally { setDeploying(false); }
 }
 
-// ── Delete ─────────────────────────────────────────────────
-
-function confirmDelete() {
-  document.getElementById('delete-modal').classList.remove('hidden');
+function setDeploying(on) {
+  const text = on ? '<span class="spin"></span>' : '▲ Deploy';
+  const barText = on ? '<span class="spin"></span>' : '▲ Save & Deploy';
+  document.getElementById('deploy-btn').disabled     = on;
+  document.getElementById('deploy-btn').innerHTML    = text;
+  document.getElementById('deploy-btn-bar').disabled = on;
+  document.getElementById('deploy-btn-bar').innerHTML = barText;
 }
+
+// ── Delete ──────────────────────────────────────────────────
+function confirmDelete()  { document.getElementById('delete-modal').classList.remove('hidden'); }
+function closeDeleteModal(){ document.getElementById('delete-modal').classList.add('hidden');    }
 
 async function deleteCaseStudy() {
   try {
-    const res = await fetch(`/api/case-studies/${caseStudyId}`, { method: 'DELETE' });
-    const data = await res.json();
-    if (data.success) {
-      showToast('Deleted', 'success');
-      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
-    } else {
-      showToast(data.error || 'Delete failed', 'error');
-    }
-  } catch (e) {
-    showToast('Delete failed', 'error');
-  }
+    const r = await fetch(`/api/case-studies/${csId}`, { method: 'DELETE' });
+    const d = await r.json();
+    if (d.success) { showToast('Deleted', 'success'); setTimeout(() => window.location.href = 'index.html', 800); }
+    else showToast(d.error || 'Delete failed', 'error');
+  } catch { showToast('Delete failed', 'error'); }
 }
 
-// ── Tabs ───────────────────────────────────────────────────
+document.getElementById('delete-modal').addEventListener('click', function (e) { if (e.target === this) closeDeleteModal(); });
 
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t, i) => {
-    const names = ['meta', 'content', 'images'];
-    t.classList.toggle('active', names[i] === name);
-  });
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(`tab-${name}`).classList.add('active');
+// ── Cloudinary upload ──────────────────────────────────────
+function uploadImage(inputId, imgIdx) {
+  const cloud  = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  if (!cloud || !preset) { showToast('Set up Cloudinary in Setup first', 'error'); return; }
+  pendingUpload = { inputId, imgIdx };
+  const fi = document.getElementById('file-upload');
+  fi.value = ''; fi.onchange = handleUpload; fi.click();
+}
+
+async function handleUpload(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const cloud  = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  showToast('Uploading…', 'info');
+  try {
+    const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', preset);
+    const r = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body: fd });
+    const d = await r.json();
+    if (d.secure_url) {
+      const { inputId, imgIdx } = pendingUpload || {};
+      if (inputId) {
+        document.getElementById(inputId).value = d.secure_url;
+        if (inputId === 'meta-og-image')   updateCoverPreview();
+        if (inputId === 'card-thumbnail')  updateCardThumbPreview();
+      } else if (imgIdx != null) {
+        cs.imageMap[imgIdx].current = d.secure_url;
+        renderImageList();
+      }
+      markChanged();
+      showToast('Uploaded!', 'success');
+    } else showToast(d.error?.message || 'Upload failed', 'error');
+  } catch { showToast('Upload failed', 'error'); }
 }
 
 // ── Helpers ────────────────────────────────────────────────
-
-function markChanged() {
-  document.getElementById('save-indicator').textContent = '• Unsaved changes';
-}
-
-function escHtml(str) {
-  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function showToast(msg, type = 'info') {
-  const container = document.getElementById('toasts');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-  toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span> ${msg}`;
-  container.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
+  const c = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
 }
 
-// Close delete modal on overlay click
-document.getElementById('delete-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.add('hidden');
-});
-
-// ── Init ───────────────────────────────────────────────────
 load();
 </script>
 </body>

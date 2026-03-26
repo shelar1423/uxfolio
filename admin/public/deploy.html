@@ -3,177 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deploy · Portfolio Admin</title>
+  <title>Portfolio · Deploy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <h2>Portfolio Admin</h2>
-      <span>Digvijay · v1.0</span>
-    </div>
-    <nav class="sidebar-nav">
-      <a href="index.html" class="nav-item"><span class="icon">📋</span> Case Studies</a>
-      <a href="deploy.html" class="nav-item active"><span class="icon">🚀</span> Deploy</a>
-      <a href="setup.html" class="nav-item"><span class="icon">⚙️</span> Setup</a>
-    </nav>
-  </aside>
 
-  <main class="main">
-    <div class="page-header">
-      <div>
-        <h1 class="page-title">Deploy</h1>
-        <p class="page-subtitle">Push changes to GitHub → Vercel auto-deploys</p>
+<!-- ── Topbar ───────────────────────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">P</div>
+    Portfolio
+  </div>
+  <nav class="topbar-nav">
+    <a href="index.html">Pages</a>
+    <a href="homepage.html">Homepage</a>
+    <a href="deploy.html" class="active">Deploy</a>
+    <a href="setup.html">Setup</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://uxfolio.vercel.app" target="_blank" class="btn btn-ghost btn-sm">View Live ↗</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Deploy</h1>
+      <p class="page-subtitle">Push changes to GitHub → Vercel auto-deploys in ~30 seconds</p>
+    </div>
+  </div>
+
+  <div style="padding: 0 28px 32px; display:flex; flex-direction:column; gap:14px; max-width:700px">
+
+    <!-- Status -->
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">Git Status</div></div>
+      <div class="form-section-body">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span id="status-pill" class="status-pill unknown">
+            <span class="dot"></span>
+            <span class="spin" style="width:11px;height:11px"></span>
+            Checking…
+          </span>
+          <span id="git-details" style="font-size:12px;color:var(--text-2)"></span>
+        </div>
       </div>
     </div>
 
-    <!-- Git status card -->
-    <div class="deploy-card" style="margin-bottom:20px;">
-      <div class="form-section-title" style="margin-bottom:16px;">Current Status</div>
-      <div class="deploy-status" id="git-status-badge">
-        <span class="spinner"></span> Checking git status...
+    <!-- Deploy -->
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">Push to Vercel</div></div>
+      <div class="form-section-body">
+        <div class="form-group">
+          <label>Commit Message <span class="hint">· optional</span></label>
+          <input type="text" id="commit-msg" placeholder="Update portfolio" />
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-lg" onclick="deploy()" id="deploy-btn">▲ Deploy Now</button>
+          <button class="btn btn-secondary"      onclick="buildOnly()" id="build-btn">Rebuild Only</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.6">
+          <strong style="color:var(--text)">Deploy Now</strong> commits + pushes to GitHub.
+          Vercel picks it up automatically and goes live in ~30 seconds.<br>
+          <strong style="color:var(--text)">Rebuild Only</strong> regenerates local HTML files without pushing.
+        </p>
       </div>
-      <div style="font-size:13px;color:var(--text-muted);" id="git-details"></div>
     </div>
 
-    <!-- Deploy action -->
-    <div class="deploy-card" style="margin-bottom:20px;">
-      <div class="form-section-title" style="margin-bottom:16px;">Deploy to Vercel</div>
-      <div class="form-group">
-        <label>Commit Message <span class="hint">(optional)</span></label>
-        <input type="text" id="commit-message" placeholder="Update case studies" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;" />
+    <!-- Log -->
+    <div class="form-section hidden" id="log-section">
+      <div class="form-section-head"><div class="form-section-title">Output</div></div>
+      <div class="form-section-body">
+        <div class="deploy-log" id="deploy-log"></div>
+        <a href="https://uxfolio.vercel.app" target="_blank"
+          id="live-link" class="btn btn-secondary btn-sm hidden"
+          style="align-self:flex-start">View Live Site ↗</a>
       </div>
-      <div style="display:flex;gap:10px;margin-top:16px;">
-        <button class="btn btn-primary btn-lg" onclick="deploy()" id="deploy-btn">
-          🚀 Deploy Now
-        </button>
-        <button class="btn btn-secondary" onclick="buildOnly()" id="build-btn">
-          🔨 Rebuild Only (no push)
-        </button>
-      </div>
-      <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
-        "Deploy Now" commits your changes to GitHub. Vercel will automatically detect the push and go live in ~30 seconds.
-      </p>
     </div>
 
-    <!-- Deploy log -->
-    <div class="deploy-card" id="log-card" style="display:none;">
-      <div class="form-section-title" style="margin-bottom:12px;">Deploy Log</div>
-      <div id="deploy-log" style="font-family:monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;color:var(--text);"></div>
-    </div>
-  </main>
+  </div>
 </div>
 
-<div class="toast-container" id="toasts"></div>
+<div id="toasts"></div>
 
 <script>
-async function loadGitStatus() {
+async function loadStatus() {
   try {
-    const res = await fetch('/api/git-status');
-    const data = await res.json();
-    const badge = document.getElementById('git-status-badge');
+    const r = await fetch('/api/git-status');
+    const d = await r.json();
+    const pill    = document.getElementById('status-pill');
     const details = document.getElementById('git-details');
 
-    if (data.notSetUp) {
-      badge.className = 'deploy-status not-setup';
-      badge.innerHTML = 'ℹ️ Git not set up yet — see the <a href="setup.html" style="color:inherit;font-weight:600;">Setup tab</a> to get started.';
+    if (d.notSetUp) {
+      pill.className = 'status-pill unknown';
+      pill.innerHTML = '<span class="dot"></span> Git not set up';
+      details.innerHTML = 'See the <a href="setup.html" style="color:var(--accent)">Setup tab</a> to get started.';
       return;
     }
 
-    if (data.hasChanges) {
-      badge.className = 'deploy-status changes';
-      badge.innerHTML = '🟡 You have unsaved changes ready to deploy';
+    if (d.hasChanges) {
+      pill.className = 'status-pill dirty';
+      pill.innerHTML = '<span class="dot"></span> Unsaved changes';
     } else {
-      badge.className = 'deploy-status ready';
-      badge.innerHTML = '✅ Everything is up to date';
+      pill.className = 'status-pill ok';
+      pill.innerHTML = '<span class="dot"></span> Up to date';
     }
 
-    let info = [];
-    if (data.branch) info.push(`Branch: <strong>${data.branch}</strong>`);
-    if (data.remoteUrl) info.push(`Remote: <strong>${data.remoteUrl}</strong>`);
-    details.innerHTML = info.join(' &nbsp;·&nbsp; ');
-  } catch (e) {
-    document.getElementById('git-status-badge').innerHTML = '⚠️ Could not check git status';
+    const parts = [];
+    if (d.branch)    parts.push(`Branch: <strong>${d.branch}</strong>`);
+    if (d.remoteUrl) parts.push(`Remote: <strong>${d.remoteUrl}</strong>`);
+    details.innerHTML = parts.join(' &nbsp;·&nbsp; ');
+  } catch {
+    document.getElementById('status-pill').innerHTML = '<span class="dot"></span> Could not check';
   }
 }
 
 async function deploy() {
   const btn = document.getElementById('deploy-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Deploying...';
+  btn.innerHTML = '<span class="spin"></span> Deploying…';
 
-  const message = document.getElementById('commit-message').value.trim();
+  const message = document.getElementById('commit-msg').value.trim();
   showLog('');
 
   try {
-    const res = await fetch('/api/deploy', {
+    const r = await fetch('/api/deploy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message }),
     });
-    const data = await res.json();
-    if (data.success) {
-      showLog('✅ ' + data.message + '\n\nYour site will be live at <a href="https://uxfolio.vercel.app" target="_blank">uxfolio.vercel.app</a> in ~30 seconds.');
-      showToast(data.message, 'success');
-      loadGitStatus();
+    const d = await r.json();
+    if (d.success) {
+      showLog(d.message, 'ok');
+      document.getElementById('live-link').classList.remove('hidden');
+      showToast('Deployed!', 'success');
+      loadStatus();
     } else {
-      showLog('❌ ' + data.error);
-      showToast(data.error, 'error');
+      showLog(d.error, 'err');
+      showToast(d.error || 'Deploy failed', 'error');
     }
   } catch (e) {
-    showLog('❌ Deploy failed: ' + e.message);
+    showLog('Deploy failed: ' + e.message, 'err');
     showToast('Deploy failed', 'error');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '🚀 Deploy Now';
+    btn.innerHTML = '▲ Deploy Now';
   }
 }
 
 async function buildOnly() {
   const btn = document.getElementById('build-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Building...';
+  btn.innerHTML = '<span class="spin"></span> Building…';
   showLog('');
 
   try {
-    const res = await fetch('/api/build', { method: 'POST' });
-    const data = await res.json();
-    if (data.success) {
-      showLog('✅ ' + data.message);
+    const r = await fetch('/api/build', { method: 'POST' });
+    const d = await r.json();
+    if (d.success) {
+      showLog(d.message, 'ok');
       showToast('Built successfully', 'success');
     } else {
-      showLog('❌ ' + data.error);
-      showToast(data.error, 'error');
+      showLog(d.error, 'err');
+      showToast(d.error || 'Build failed', 'error');
     }
   } catch (e) {
-    showLog('❌ Build failed: ' + e.message);
+    showLog('Build failed: ' + e.message, 'err');
     showToast('Build failed', 'error');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '🔨 Rebuild Only (no push)';
+    btn.innerHTML = 'Rebuild Only';
   }
 }
 
-function showLog(msg) {
-  const card = document.getElementById('log-card');
-  card.style.display = msg ? 'block' : 'none';
-  document.getElementById('deploy-log').textContent = msg;
+function showLog(msg, type) {
+  const section = document.getElementById('log-section');
+  const log     = document.getElementById('deploy-log');
+  section.classList.toggle('hidden', !msg);
+  if (!msg) { log.innerHTML = ''; return; }
+  const cls = type === 'ok' ? 'log-ok' : type === 'err' ? 'log-err' : '';
+  log.innerHTML = `<span class="${cls}">${msg}</span>`;
 }
 
 function showToast(msg, type = 'info') {
-  const container = document.getElementById('toasts');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-  toast.innerHTML = `<span>${icons[type]}</span> ${msg}`;
-  container.appendChild(toast);
-  setTimeout(() => toast.remove(), 5000);
+  const c = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
 }
 
-loadGitStatus();
+loadStatus();
 </script>
 </body>
 </html>

@@ -3,208 +3,338 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Admin</title>
+  <title>Portfolio · Pages</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="layout">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <h2>Portfolio Admin</h2>
-      <span>Digvijay · v1.0</span>
-    </div>
-    <nav class="sidebar-nav">
-      <a href="index.html" class="nav-item active"><span class="icon">📋</span> Case Studies</a>
-      <a href="deploy.html" class="nav-item"><span class="icon">🚀</span> Deploy</a>
-      <a href="setup.html" class="nav-item"><span class="icon">⚙️</span> Setup</a>
-    </nav>
-  </aside>
 
-  <!-- Main content -->
-  <main class="main">
-    <div class="page-header">
-      <div>
-        <h1 class="page-title">Case Studies</h1>
-        <p class="page-subtitle">Edit existing case studies or add new ones</p>
-      </div>
-      <button class="btn btn-primary" onclick="showNewModal()">
-        + Add New
-      </button>
-    </div>
+<!-- ── Topbar ───────────────────────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">P</div>
+    Portfolio
+  </div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="active">Pages</a>
+    <a href="homepage.html">Homepage</a>
+    <a href="deploy.html">Deploy</a>
+    <a href="setup.html">Setup</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://uxfolio.vercel.app" target="_blank" class="btn btn-ghost btn-sm">Preview ↗</a>
+    <button class="btn btn-primary btn-sm" onclick="window.location.href='deploy.html'">▲ Deploy</button>
+  </div>
+</header>
 
-    <div class="cards-grid" id="cards-grid">
-      <!-- Cards loaded by JS -->
-      <div style="color:var(--text-muted);font-size:14px;padding:20px;">Loading...</div>
+<!-- ── Main ─────────────────────────────────────────────── -->
+<div class="page-wrap">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Pages</h1>
+      <p class="page-subtitle" id="subtitle">Loading…</p>
     </div>
-  </main>
-</div>
+    <button class="btn btn-primary" onclick="showNewModal()">+ New Case Study</button>
+  </div>
 
-<!-- New Case Study Modal -->
-<div class="modal-overlay hidden" id="new-modal">
-  <div class="modal">
-    <h3>Add New Case Study</h3>
-    <p>Create a new case study by cloning an existing layout. You'll be able to edit all content after creation.</p>
-
-    <div class="form-group">
-      <label>Case Study ID <span class="hint">(no spaces, e.g. "my-project")</span></label>
-      <input type="text" id="new-id" placeholder="my-project" pattern="[a-z0-9\-]+" />
-    </div>
-    <div class="form-group">
-      <label>URL Slug <span class="hint">(path on your site, e.g. "my-project")</span></label>
-      <input type="text" id="new-slug" placeholder="my-project" />
-    </div>
-    <div class="form-group">
-      <label>Page Title</label>
-      <input type="text" id="new-title" placeholder="My Project - Digvijay Portfolio" />
-    </div>
-    <div class="form-group">
-      <label>Clone Layout From</label>
-      <select id="new-template">
-        <!-- Options loaded by JS -->
-      </select>
-    </div>
-
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="hideNewModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="createCaseStudy()" id="create-btn">Create Case Study</button>
+  <div class="cards-grid" id="cards-grid">
+    <div class="empty-state" style="grid-column:1/-1">
+      <span class="spin" style="width:20px;height:20px;margin:0 auto 12px;display:block"></span>
     </div>
   </div>
 </div>
 
-<!-- Toast container -->
-<div class="toast-container" id="toasts"></div>
+<!-- ── New Case Study Modal ──────────────────────────────── -->
+<div class="modal-overlay hidden" id="new-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">New Case Study</div>
+        <div class="modal-desc">Fill in both steps then create</div>
+      </div>
+      <button class="modal-x" onclick="hideNewModal()">✕</button>
+    </div>
+    <div class="modal-body">
 
-<script>
-let caseStudies = [];
+      <div class="step-pills">
+        <div class="step-pill active" id="pill-1" onclick="goStep(1)">① Basic Info</div>
+        <div class="step-pill" id="pill-2" onclick="goStep(2)">② Homepage Card</div>
+      </div>
 
-async function loadCaseStudies() {
-  try {
-    const res = await fetch('/api/case-studies');
-    const data = await res.json();
-    caseStudies = data.data || [];
-    renderCards();
-    populateTemplateOptions();
-  } catch (e) {
-    showToast('Failed to load case studies', 'error');
-  }
-}
-
-function renderCards() {
-  const grid = document.getElementById('cards-grid');
-  if (caseStudies.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><h3>No case studies yet</h3><p>Add your first case study to get started.</p></div>';
-    return;
-  }
-
-  grid.innerHTML = caseStudies.map(cs => `
-    <div class="case-card" onclick="editCase('${cs.id}')">
-      ${cs.coverImage
-        ? `<img class="card-thumb" src="${cs.coverImage}" alt="${cs.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-        : ''}
-      <div class="card-thumb-placeholder" style="${cs.coverImage ? 'display:none' : ''}">🖼️</div>
-      <div class="card-body">
-        <div class="card-title">${cs.title || cs.id}</div>
-        <div class="card-slug">/${cs.slug}</div>
-        <div class="card-actions" onclick="event.stopPropagation()">
-          <a href="editor.html?id=${cs.id}" class="btn btn-primary btn-sm">Edit</a>
-          <a href="/preview-site/${cs.outputPath}" target="_blank" class="btn btn-secondary btn-sm">Preview</a>
+      <!-- Step 1 -->
+      <div class="step-page active" id="step-1">
+        <div class="form-group">
+          <label>Case Study ID <span class="hint">· lowercase, no spaces · e.g. "my-project"</span></label>
+          <input type="text" id="new-id" placeholder="my-project" />
+        </div>
+        <div class="form-group">
+          <label>URL Slug <span class="hint">· auto-filled from ID</span></label>
+          <input type="text" id="new-slug" placeholder="my-project" />
+        </div>
+        <div class="form-group">
+          <label>Page Title <span class="hint">· browser tab + SEO</span></label>
+          <input type="text" id="new-title" placeholder="My Project - Digvijay Portfolio" />
+        </div>
+        <div class="form-group">
+          <label>Clone Layout From <span class="hint">· copies the page design</span></label>
+          <select id="new-template"></select>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px">
+          <button class="btn btn-ghost" onclick="hideNewModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="goStep(2)">Next →</button>
         </div>
       </div>
+
+      <!-- Step 2 -->
+      <div class="step-page" id="step-2">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Display Name</label>
+            <input type="text" id="card-name" placeholder="My Project" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="card-category" placeholder="UX Design" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tagline <span class="hint">· one-liner shown on card</span></label>
+          <input type="text" id="card-tagline" placeholder="A short tagline…" />
+        </div>
+        <div class="form-group">
+          <label>Description <span class="hint">· 2–3 sentences</span></label>
+          <textarea id="card-description" rows="3" placeholder="Brief description of this project…"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Thumbnail</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="card-thumbnail" placeholder="https://…" oninput="updateThumbPreview()" />
+            <button class="btn btn-secondary btn-sm" onclick="uploadCardThumb()" style="flex-shrink:0">Upload</button>
+          </div>
+          <img id="thumb-preview" class="hidden" style="margin-top:8px;border-radius:6px;max-height:90px;object-fit:cover;width:100%" />
+        </div>
+        <div class="form-group">
+          <label>Card Background</label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" id="card-bg" value="#f0f0f0" style="width:110px;flex-shrink:0" />
+            <input type="color" id="card-bg-picker" value="#f0f0f0"
+              style="width:38px;height:36px;padding:2px 6px;flex-shrink:0;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer"
+              oninput="document.getElementById('card-bg').value=this.value" />
+          </div>
+          <div class="swatches" id="color-swatches"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8px;padding-top:4px">
+          <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost" onclick="hideNewModal()">Cancel</button>
+            <button class="btn btn-primary" id="create-btn" onclick="createCaseStudy()">Create Case Study</button>
+          </div>
+        </div>
+      </div>
+
     </div>
-  `).join('');
+  </div>
+</div>
+
+<input type="file" id="file-upload-thumb" accept="image/*" style="display:none" />
+<div id="toasts"></div>
+
+<script>
+const CARD_COLORS = ['#f8f4ef','#e8f4f8','#eee8f8','#e8f8ef','#f8e8ea','#1a1a2e','#0d1b2a','#1c1c1c'];
+let caseStudies = [];
+
+// ── Load ──────────────────────────────────────────────────
+async function loadCaseStudies() {
+  try {
+    const r = await fetch('/api/case-studies');
+    const d = await r.json();
+    caseStudies = d.data || d;
+    const n = caseStudies.length;
+    document.getElementById('subtitle').textContent = `${n} case ${n === 1 ? 'study' : 'studies'}`;
+    renderCards();
+    populateTemplates();
+    renderSwatches();
+  } catch {
+    showToast('Failed to load', 'error');
+    document.getElementById('subtitle').textContent = 'Error loading';
+  }
 }
 
-function editCase(id) {
-  window.location.href = `editor.html?id=${id}`;
+// ── Render Cards ──────────────────────────────────────────
+function renderCards() {
+  const g = document.getElementById('cards-grid');
+  if (!caseStudies.length) {
+    g.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>No case studies yet</h3><p>Click "+ New Case Study" to get started.</p></div>';
+    return;
+  }
+  const FRAMER = new Set(['svaroots','broken-pots-2','emerald','origin']);
+  g.innerHTML = caseStudies.map(cs => {
+    const isFr = FRAMER.has(cs.id);
+    const thumb = cs.coverImage || cs.card?.thumbnail || '';
+    return `
+    <div class="case-card">
+      <div class="cc-thumb">
+        ${thumb
+          ? `<img src="${thumb}" alt="${esc(cs.title || cs.id)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=cc-thumb-empty>◈</div>'">`
+          : '<div class="cc-thumb-empty">◈</div>'}
+        <div class="cc-overlay">
+          <button class="btn btn-primary btn-sm" onclick="editCase('${cs.id}')">Edit</button>
+          <a href="/${cs.slug}/" target="_blank" class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">Preview ↗</a>
+        </div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-title">${esc(cs.title || cs.id)}</div>
+        <div class="cc-meta">
+          <span>/${cs.slug}/</span>
+          <span class="tag ${isFr ? 'tag-framer' : 'tag-custom'}">${isFr ? 'Framer' : 'Custom'}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function populateTemplateOptions() {
-  const sel = document.getElementById('new-template');
-  sel.innerHTML = caseStudies.map(cs =>
-    `<option value="${cs.id}">${cs.title || cs.id}</option>`
+function editCase(id) { window.location.href = `editor.html?id=${id}`; }
+
+// ── Modal helpers ─────────────────────────────────────────
+function populateTemplates() {
+  const s = document.getElementById('new-template');
+  const orig = ['svaroots','broken-pots-2','emerald','origin'];
+  const opts = caseStudies.filter(cs => orig.includes(cs.id));
+  s.innerHTML = opts.map(cs => `<option value="${cs.id}">${cs.title || cs.id}</option>`).join('');
+}
+
+function renderSwatches() {
+  document.getElementById('color-swatches').innerHTML = CARD_COLORS.map(c =>
+    `<div class="swatch" style="background:${c}" onclick="pickColor('${c}')" title="${c}"></div>`
   ).join('');
+}
+
+function pickColor(c) {
+  document.getElementById('card-bg').value = c;
+  document.getElementById('card-bg-picker').value = c;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('on'));
+  event.currentTarget.classList.add('on');
+}
+
+function goStep(n) {
+  document.querySelectorAll('.step-page').forEach((p, i) => p.classList.toggle('active', i + 1 === n));
+  document.querySelectorAll('.step-pill').forEach((p, i) => p.classList.toggle('active', i + 1 === n));
+  if (n === 2) {
+    const id = document.getElementById('new-id').value.trim();
+    if (id && !document.getElementById('card-name').value)
+      document.getElementById('card-name').value = id.split('-').map(w => w[0]?.toUpperCase() + w.slice(1)).join(' ');
+  }
 }
 
 function showNewModal() {
   document.getElementById('new-modal').classList.remove('hidden');
-  document.getElementById('new-id').focus();
+  goStep(1);
+  setTimeout(() => document.getElementById('new-id').focus(), 60);
 
-  // Auto-sync id → slug
-  document.getElementById('new-id').oninput = function() {
+  document.getElementById('new-id').oninput = function () {
     const slug = this.value.toLowerCase().replace(/[^a-z0-9\-]/g, '-');
     document.getElementById('new-slug').value = slug;
-    const title = document.getElementById('new-title');
-    if (!title.dataset.touched) {
-      title.value = this.value.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' - Digvijay Portfolio';
+    const titleEl = document.getElementById('new-title');
+    if (!titleEl.dataset.touched) {
+      const name = this.value.split('-').map(w => w[0]?.toUpperCase() + w.slice(1)).join(' ');
+      titleEl.value = name + ' - Digvijay Portfolio';
     }
   };
-  document.getElementById('new-title').oninput = function() {
-    this.dataset.touched = '1';
-  };
+  document.getElementById('new-title').oninput = function () { this.dataset.touched = '1'; };
 }
 
 function hideNewModal() {
   document.getElementById('new-modal').classList.add('hidden');
+  ['new-id','new-slug','new-title','card-name','card-category','card-tagline','card-description','card-thumbnail'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; delete el.dataset.touched; }
+  });
+  document.getElementById('card-bg').value = '#f0f0f0';
+  document.getElementById('card-bg-picker').value = '#f0f0f0';
+  document.getElementById('thumb-preview').classList.add('hidden');
 }
 
-async function createCaseStudy() {
-  const id = document.getElementById('new-id').value.trim();
-  const slug = document.getElementById('new-slug').value.trim();
-  const title = document.getElementById('new-title').value.trim();
-  const templateId = document.getElementById('new-template').value;
+function updateThumbPreview() {
+  const url = document.getElementById('card-thumbnail').value.trim();
+  const img = document.getElementById('thumb-preview');
+  if (url) { img.src = url; img.classList.remove('hidden'); } else img.classList.add('hidden');
+}
 
-  if (!id || !slug) {
-    showToast('Please fill in the ID and Slug fields', 'error');
-    return;
-  }
-  if (!/^[a-z0-9\-]+$/.test(id)) {
-    showToast('ID can only contain lowercase letters, numbers, and hyphens', 'error');
-    return;
-  }
+// ── Cloudinary upload ─────────────────────────────────────
+function uploadCardThumb() {
+  const cloud  = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  if (!cloud || !preset) { showToast('Set up Cloudinary in Setup first', 'error'); return; }
+  const fi = document.getElementById('file-upload-thumb');
+  fi.value = '';
+  fi.onchange = async e => {
+    const file = e.target.files[0]; if (!file) return;
+    showToast('Uploading…', 'info');
+    const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', preset);
+    try {
+      const r = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body: fd });
+      const d = await r.json();
+      if (d.secure_url) {
+        document.getElementById('card-thumbnail').value = d.secure_url;
+        updateThumbPreview();
+        showToast('Uploaded!', 'success');
+      } else showToast(d.error?.message || 'Upload failed', 'error');
+    } catch { showToast('Upload failed', 'error'); }
+  };
+  fi.click();
+}
+
+// ── Create ────────────────────────────────────────────────
+async function createCaseStudy() {
+  const id         = document.getElementById('new-id').value.trim();
+  const slug       = document.getElementById('new-slug').value.trim();
+  const title      = document.getElementById('new-title').value.trim();
+  const templateId = document.getElementById('new-template').value;
+  if (!id || !slug) { showToast('Fill in ID and Slug', 'error'); return; }
+  if (!/^[a-z0-9\-]+$/.test(id)) { showToast('ID: lowercase letters, numbers, hyphens only', 'error'); return; }
+
+  const card = {
+    name:        document.getElementById('card-name').value.trim()        || id,
+    category:    document.getElementById('card-category').value.trim()    || 'Case Study',
+    tagline:     document.getElementById('card-tagline').value.trim(),
+    description: document.getElementById('card-description').value.trim(),
+    thumbnail:   document.getElementById('card-thumbnail').value.trim(),
+    bgColor:     document.getElementById('card-bg').value.trim()          || '#f0f0f0',
+  };
 
   const btn = document.getElementById('create-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Creating...';
-
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Creating…';
   try {
-    const res = await fetch('/api/case-studies', {
+    const r = await fetch('/api/case-studies', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, slug, templateId, meta: { title } }),
+      body: JSON.stringify({ id, slug, templateId, meta: { title }, card }),
     });
-    const data = await res.json();
-    if (data.success) {
+    const d = await r.json();
+    if (d.success) {
       showToast('Case study created!', 'success');
       hideNewModal();
-      setTimeout(() => { window.location.href = `editor.html?id=${id}`; }, 800);
-    } else {
-      showToast(data.error || 'Failed to create', 'error');
-    }
-  } catch (e) {
-    showToast('Server error', 'error');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Create Case Study';
-  }
+      setTimeout(() => window.location.href = `editor.html?id=${id}`, 700);
+    } else showToast(d.error || 'Failed to create', 'error');
+  } catch { showToast('Server error', 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = 'Create Case Study'; }
 }
 
-// Close modal on overlay click
-document.getElementById('new-modal').addEventListener('click', function(e) {
-  if (e.target === this) hideNewModal();
-});
+// ── Close on overlay click ────────────────────────────────
+document.getElementById('new-modal').addEventListener('click', function (e) { if (e.target === this) hideNewModal(); });
 
-// Toast helper
+// ── Toast ─────────────────────────────────────────────────
 function showToast(msg, type = 'info') {
-  const container = document.getElementById('toasts');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `<span>${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span> ${msg}`;
-  container.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
+  const c = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
 }
+
+function esc(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 loadCaseStudies();
 </script>

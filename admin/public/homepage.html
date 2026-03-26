@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio · Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Topbar ───────────────────────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">P</div>
+    Portfolio
+  </div>
+  <nav class="topbar-nav">
+    <a href="index.html">Pages</a>
+    <a href="homepage.html" class="active">Homepage</a>
+    <a href="deploy.html">Deploy</a>
+    <a href="setup.html">Setup</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://uxfolio.vercel.app" target="_blank" class="btn btn-ghost btn-sm">Preview ↗</a>
+    <button class="btn btn-primary btn-sm" onclick="window.location.href='deploy.html'">▲ Deploy</button>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Homepage</h1>
+      <p class="page-subtitle">Edit your homepage SEO and manage case study cards</p>
+    </div>
+  </div>
+
+  <!-- ── Tabs ───────────────────────────────────────────── -->
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="switchTab('meta', this)">SEO & Meta</button>
+    <button class="tab-btn"        onclick="switchTab('cards', this)">Case Study Cards</button>
+  </div>
+
+  <!-- ── Tab: SEO & Meta ────────────────────────────────── -->
+  <div class="tab-panel active" id="tab-meta">
+
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">Page Identity</div></div>
+      <div class="form-section-body">
+        <div class="form-group">
+          <label>Page Title <span class="hint">· shown in browser tab + Google</span></label>
+          <input type="text" id="hp-title" placeholder="Digvijay · UX Portfolio" oninput="markChanged()" />
+        </div>
+        <div class="form-group">
+          <label>Meta Description <span class="hint">· Google search snippet (~160 chars)</span></label>
+          <textarea id="hp-desc" rows="3" placeholder="Describe what your portfolio is about…" oninput="markChanged()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-head"><div class="form-section-title">Social Sharing (Open Graph)</div></div>
+      <div class="form-section-body">
+        <div class="form-group">
+          <label>OG Title <span class="hint">· headline when shared on Twitter/LinkedIn</span></label>
+          <input type="text" id="hp-og-title" placeholder="Same as page title" oninput="markChanged()" />
+        </div>
+        <div class="form-group">
+          <label>OG Description</label>
+          <input type="text" id="hp-og-desc" placeholder="Same as meta description" oninput="markChanged()" />
+        </div>
+        <div class="form-group">
+          <label>OG Image <span class="hint">· preview thumbnail when shared · 1200×630px ideal</span></label>
+          <div style="display:flex;gap:8px">
+            <input type="url" id="hp-og-image" placeholder="https://…"
+              oninput="updateOGPreview(); markChanged()" />
+            <button class="btn btn-secondary btn-sm" onclick="uploadOGImage()" style="flex-shrink:0">Upload</button>
+          </div>
+          <img id="og-preview" class="hidden"
+            style="margin-top:10px;border-radius:8px;max-height:140px;object-fit:cover;max-width:240px" />
+        </div>
+      </div>
+    </div>
+
+    <div id="meta-save-row" style="display:flex;justify-content:flex-end;gap:8px;margin-top:4px">
+      <span id="meta-unsaved" class="unsaved-label" style="display:none;align-self:center">● Unsaved changes</span>
+      <button class="btn btn-secondary" onclick="saveMeta(false)" id="meta-save-btn">Save</button>
+      <button class="btn btn-primary"   onclick="saveMeta(true)"  id="meta-deploy-btn">▲ Save & Deploy</button>
+    </div>
+
+  </div>
+
+  <!-- ── Tab: Case Study Cards ──────────────────────────── -->
+  <div class="tab-panel" id="tab-cards">
+
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:18px;line-height:1.6">
+      These are the cards that appear on your homepage.
+      <span style="color:var(--text-3)">Framer</span> cards are built into the original design (edit them by re-exporting from Framer).
+      <span style="color:var(--accent)">Custom</span> cards are fully editable.
+    </p>
+
+    <div class="hp-grid" id="hp-cards-grid">
+      <div class="empty-state" style="grid-column:1/-1">
+        <span class="spin" style="width:20px;height:20px;margin:0 auto 12px;display:block"></span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── Card Edit Modal ───────────────────────────────────── -->
+<div class="modal-overlay hidden" id="card-edit-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Edit Homepage Card</div>
+        <div class="modal-desc" id="card-edit-desc">Editing card display on homepage</div>
+      </div>
+      <button class="modal-x" onclick="closeCardModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Display Name</label>
+            <input type="text" id="ce-name" placeholder="Project Name" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="ce-category" placeholder="UX Design" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tagline</label>
+          <input type="text" id="ce-tagline" placeholder="One-liner on the card" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="ce-description" rows="3" placeholder="2–3 sentences about this project"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Thumbnail URL</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="ce-thumbnail" placeholder="https://…" oninput="updateCEThumbPreview()" />
+            <button class="btn btn-secondary btn-sm" onclick="uploadCEThumb()" style="flex-shrink:0">Upload</button>
+          </div>
+          <img id="ce-thumb-preview" class="hidden"
+            style="margin-top:8px;border-radius:6px;max-height:90px;object-fit:cover;width:100%" />
+        </div>
+        <div class="form-group">
+          <label>Background Color</label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" id="ce-bg" placeholder="#f0f0f0" style="width:110px;flex-shrink:0" />
+            <input type="color" id="ce-bg-picker" value="#f0f0f0"
+              style="width:38px;height:36px;padding:2px 6px;flex-shrink:0;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer"
+              oninput="document.getElementById('ce-bg').value=this.value" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeCardModal()">Cancel</button>
+      <button class="btn btn-primary" id="ce-save-btn" onclick="saveCardEdit()">Save Card</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="file-upload-og"   accept="image/*" style="display:none" />
+<input type="file" id="file-upload-card" accept="image/*" style="display:none" />
+<div id="toasts"></div>
+
+<script>
+const FRAMER = new Set(['svaroots','broken-pots-2','emerald','origin']);
+let allCaseStudies = [];
+let editingId = null;
+
+// ── Init ───────────────────────────────────────────────────
+async function init() {
+  await Promise.all([loadMeta(), loadCards()]);
+}
+
+// ── Meta ───────────────────────────────────────────────────
+async function loadMeta() {
+  try {
+    const r = await fetch('/api/homepage');
+    const d = await r.json();
+    if (d.success) {
+      const m = d.data;
+      document.getElementById('hp-title').value     = m.title       || '';
+      document.getElementById('hp-desc').value      = m.description || '';
+      document.getElementById('hp-og-title').value  = m.ogTitle     || '';
+      document.getElementById('hp-og-desc').value   = m.ogDescription || '';
+      document.getElementById('hp-og-image').value  = m.ogImage     || '';
+      updateOGPreview();
+    }
+  } catch { showToast('Failed to load homepage meta', 'error'); }
+}
+
+function markChanged() {
+  document.getElementById('meta-unsaved').style.display = 'inline';
+}
+
+async function saveMeta(andDeploy) {
+  const saveBtn   = document.getElementById('meta-save-btn');
+  const deployBtn = document.getElementById('meta-deploy-btn');
+  saveBtn.disabled = deployBtn.disabled = true;
+  saveBtn.innerHTML = '<span class="spin"></span>';
+
+  try {
+    const r = await fetch('/api/homepage', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title:         document.getElementById('hp-title').value.trim(),
+        description:   document.getElementById('hp-desc').value.trim(),
+        ogTitle:       document.getElementById('hp-og-title').value.trim()  || document.getElementById('hp-title').value.trim(),
+        ogDescription: document.getElementById('hp-og-desc').value.trim()   || document.getElementById('hp-desc').value.trim(),
+        ogImage:       document.getElementById('hp-og-image').value.trim(),
+      }),
+    });
+    const d = await r.json();
+    if (d.success) {
+      showToast('Homepage meta saved!', 'success');
+      document.getElementById('meta-unsaved').style.display = 'none';
+      if (andDeploy) await doDeploy();
+    } else showToast(d.error || 'Save failed', 'error');
+  } catch { showToast('Server error', 'error'); }
+  finally {
+    saveBtn.disabled = deployBtn.disabled = false;
+    saveBtn.innerHTML   = 'Save';
+    deployBtn.innerHTML = '▲ Save & Deploy';
+  }
+}
+
+async function doDeploy() {
+  const r = await fetch('/api/deploy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'Update homepage meta' }),
+  });
+  const d = await r.json();
+  if (d.success) showToast(d.message, 'success');
+  else showToast(d.error || 'Deploy failed', 'error');
+}
+
+function updateOGPreview() {
+  const url = document.getElementById('hp-og-image').value.trim();
+  const img = document.getElementById('og-preview');
+  if (url) { img.src = url; img.classList.remove('hidden'); } else img.classList.add('hidden');
+}
+
+function uploadOGImage() {
+  const cloud  = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  if (!cloud || !preset) { showToast('Set up Cloudinary in Setup first', 'error'); return; }
+  const fi = document.getElementById('file-upload-og');
+  fi.value = '';
+  fi.onchange = async e => {
+    const file = e.target.files[0]; if (!file) return;
+    showToast('Uploading…', 'info');
+    const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', preset);
+    try {
+      const r = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body: fd });
+      const d = await r.json();
+      if (d.secure_url) {
+        document.getElementById('hp-og-image').value = d.secure_url;
+        updateOGPreview(); markChanged();
+        showToast('Uploaded!', 'success');
+      } else showToast(d.error?.message || 'Upload failed', 'error');
+    } catch { showToast('Upload failed', 'error'); }
+  };
+  fi.click();
+}
+
+// ── Cards ──────────────────────────────────────────────────
+async function loadCards() {
+  try {
+    const r = await fetch('/api/case-studies');
+    const d = await r.json();
+    allCaseStudies = d.data || d;
+    renderHPCards();
+  } catch { showToast('Failed to load cards', 'error'); }
+}
+
+function renderHPCards() {
+  const g = document.getElementById('hp-cards-grid');
+  if (!allCaseStudies.length) {
+    g.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>No case studies found</h3></div>';
+    return;
+  }
+
+  g.innerHTML = allCaseStudies.map(cs => {
+    const isFr  = FRAMER.has(cs.id);
+    const card  = cs.card || {};
+    const thumb = card.thumbnail || cs.coverImage || '';
+    const name  = card.name  || cs.meta?.title?.replace(' - Digvijay Portfolio','') || cs.id;
+    const cat   = card.category || '';
+
+    return `
+    <div class="hp-card">
+      <div class="hp-card-thumb" style="background:${card.bgColor || 'var(--surface-2)'}">
+        ${thumb
+          ? `<img src="${esc(thumb)}" alt="${esc(name)}" loading="lazy" onerror="this.style.display='none'">`
+          : ''}
+      </div>
+      ${isFr ? '<div class="framer-badge">Framer</div>' : ''}
+      <div class="hp-card-overlay">
+        ${isFr
+          ? `<a href="/${cs.slug}/" target="_blank" class="btn btn-secondary btn-sm">Preview ↗</a>`
+          : `<button class="btn btn-primary btn-sm" onclick="openCardEdit('${cs.id}')">Edit Card</button>
+             <a href="/editor.html?id=${cs.id}" class="btn btn-secondary btn-sm">Edit Page</a>`
+        }
+      </div>
+      <div class="hp-card-body">
+        <div class="hp-card-name">${esc(name)}</div>
+        ${cat ? `<div class="hp-card-cat">${esc(cat)}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Card Edit Modal ────────────────────────────────────────
+function openCardEdit(id) {
+  const cs = allCaseStudies.find(c => c.id === id);
+  if (!cs) return;
+  editingId = id;
+  const card = cs.card || {};
+
+  document.getElementById('card-edit-desc').textContent = `/${cs.slug}/`;
+  document.getElementById('ce-name').value        = card.name        || cs.meta?.title?.replace(' - Digvijay Portfolio','') || id;
+  document.getElementById('ce-category').value    = card.category    || '';
+  document.getElementById('ce-tagline').value     = card.tagline     || '';
+  document.getElementById('ce-description').value = card.description || cs.meta?.description || '';
+  document.getElementById('ce-thumbnail').value   = card.thumbnail   || cs.coverImage || '';
+  document.getElementById('ce-bg').value          = card.bgColor     || '#f0f0f0';
+  document.getElementById('ce-bg-picker').value   = card.bgColor     || '#f0f0f0';
+  updateCEThumbPreview();
+
+  document.getElementById('card-edit-modal').classList.remove('hidden');
+}
+
+function closeCardModal() {
+  document.getElementById('card-edit-modal').classList.add('hidden');
+  editingId = null;
+}
+
+function updateCEThumbPreview() {
+  const url = document.getElementById('ce-thumbnail').value.trim();
+  const img = document.getElementById('ce-thumb-preview');
+  if (url) { img.src = url; img.classList.remove('hidden'); } else img.classList.add('hidden');
+}
+
+function uploadCEThumb() {
+  const cloud  = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  if (!cloud || !preset) { showToast('Set up Cloudinary in Setup first', 'error'); return; }
+  const fi = document.getElementById('file-upload-card');
+  fi.value = '';
+  fi.onchange = async e => {
+    const file = e.target.files[0]; if (!file) return;
+    showToast('Uploading…', 'info');
+    const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', preset);
+    try {
+      const r = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body: fd });
+      const d = await r.json();
+      if (d.secure_url) {
+        document.getElementById('ce-thumbnail').value = d.secure_url;
+        updateCEThumbPreview();
+        showToast('Uploaded!', 'success');
+      } else showToast(d.error?.message || 'Upload failed', 'error');
+    } catch { showToast('Upload failed', 'error'); }
+  };
+  fi.click();
+}
+
+async function saveCardEdit() {
+  if (!editingId) return;
+  const cs = allCaseStudies.find(c => c.id === editingId);
+  if (!cs) return;
+
+  const card = {
+    name:        document.getElementById('ce-name').value.trim(),
+    category:    document.getElementById('ce-category').value.trim(),
+    tagline:     document.getElementById('ce-tagline').value.trim(),
+    description: document.getElementById('ce-description').value.trim(),
+    thumbnail:   document.getElementById('ce-thumbnail').value.trim(),
+    bgColor:     document.getElementById('ce-bg').value.trim(),
+  };
+
+  const btn = document.getElementById('ce-save-btn');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>';
+
+  try {
+    const r = await fetch(`/api/case-studies/${editingId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...cs, card, coverImage: card.thumbnail || cs.coverImage }),
+    });
+    const d = await r.json();
+    if (d.success) {
+      showToast('Card updated!', 'success');
+      // Update local data
+      cs.card = card;
+      cs.coverImage = card.thumbnail || cs.coverImage;
+      renderHPCards();
+      closeCardModal();
+    } else showToast(d.error || 'Save failed', 'error');
+  } catch { showToast('Server error', 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = 'Save Card'; }
+}
+
+document.getElementById('card-edit-modal').addEventListener('click', function (e) { if (e.target === this) closeCardModal(); });
+
+// ── Tabs ───────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`tab-${name}`).classList.add('active');
+}
+
+// ── Helpers ────────────────────────────────────────────────
+function esc(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function showToast(msg, type = 'info') {
+  const c = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+init();
+</script>
+</body>
+</html>
