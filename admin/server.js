@@ -143,6 +143,32 @@ app.post('/api/case-studies', (req, res) => {
       );
     }
 
+    // Clone homepage card HTML from template and inject into index.html
+    if (template.homepageCardHtml) {
+      const oldSlugPath = `/${template.slug}`;
+      const newSlugPath = `/${slug}`;
+      const oldAriaLabel = template.meta.title || template.id;
+
+      let newCard = template.homepageCardHtml
+        .split(`href="${oldSlugPath}"`).join(`href="${newSlugPath}"`)
+        .split(`href="/${template.id}"`).join(`href="${newSlugPath}"`)
+        .split(`aria-label="${oldAriaLabel} – View Full Case Study"`).join(`aria-label="${newTitle} – View Full Case Study"`)
+        .split(`aria-label="${oldAriaLabel}"`).join(`aria-label="${newTitle}"`);
+
+      newEntry.homepageCardHtml = newCard;
+
+      const INJECT_MARKER = '<!--ADMIN_CARDS_END-->';
+      const indexPath = path.join(ROOT, 'index.html');
+      let indexHtml = fs.readFileSync(indexPath, 'utf8');
+      if (indexHtml.includes(INJECT_MARKER)) {
+        indexHtml = indexHtml.replace(INJECT_MARKER, newCard + INJECT_MARKER);
+        fs.writeFileSync(indexPath, indexHtml, 'utf8');
+        console.log(`✅ Injected card for "${id}" into index.html`);
+      } else {
+        console.warn('⚠️  Inject marker not found in index.html — run npm run extract first');
+      }
+    }
+
     data['case-studies'].push(newEntry);
     writeData(data);
 
@@ -173,6 +199,17 @@ app.delete('/api/case-studies/:id', (req, res) => {
     // Remove template file
     const tplPath = path.join(ROOT, cs.templateFile);
     if (fs.existsSync(tplPath)) fs.unlinkSync(tplPath);
+
+    // Remove homepage card if it was admin-injected
+    if (cs.homepageCardHtml) {
+      const indexPath = path.join(ROOT, 'index.html');
+      let indexHtml = fs.readFileSync(indexPath, 'utf8');
+      if (indexHtml.includes(cs.homepageCardHtml)) {
+        indexHtml = indexHtml.replace(cs.homepageCardHtml, '');
+        fs.writeFileSync(indexPath, indexHtml, 'utf8');
+        console.log(`🗑 Removed card for "${req.params.id}" from index.html`);
+      }
+    }
 
     res.json({ success: true, message: `Deleted "${req.params.id}".` });
   } catch (err) {
