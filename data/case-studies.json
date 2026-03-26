@@ -1,0 +1,1273 @@
+{
+  "case-studies": [
+    {
+      "id": "svaroots",
+      "slug": "articles/svaroots",
+      "outputPath": "articles/svaroots/index.html",
+      "templateFile": "templates/svaroots.html",
+      "coverImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+      "meta": {
+        "title": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/articles/svaroots"
+      },
+      "_originalMeta": {
+        "title": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/articles/svaroots"
+      },
+      "contentMap": [
+        {
+          "original": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+          "current": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+          "label": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio"
+        },
+        {
+          "original": "Svaroots: Co-Creating the Modern Indian Sneaker",
+          "current": "Svaroots: Co-Creating the Modern Indian Sneaker",
+          "label": "Svaroots: Co-Creating the Modern Indian Sneaker"
+        },
+        {
+          "original": "End-to-End Product Design",
+          "current": "End-to-End Product Design",
+          "label": "End-to-End Product Design"
+        },
+        {
+          "original": "(Strategy, UI/UX, Front-End)",
+          "current": "(Strategy, UI/UX, Front-End)",
+          "label": "(Strategy, UI/UX, Front-End)"
+        },
+        {
+          "original": "01. The Market Opportunity",
+          "current": "01. The Market Opportunity",
+          "label": "01. The Market Opportunity"
+        },
+        {
+          "original": "Before pushing any pixels, I analyzed the mass-premium Indian footwear market to find actual business gaps. I discovered that major brands treat young buyers as passive consumers, completely missing out on the psychological value of co-creation. I anchored my product strategy on three major insights:",
+          "current": "Before pushing any pixels, I analyzed the mass-premium Indian footwear market to find actual business gaps. I discovered that major brands treat young buyers as passive consumers, completely missing out on the psychological value of co-creation. I anchored my product strategy on three major insights:",
+          "label": "Before pushing any pixels, I analyzed the mass-premium India..."
+        },
+        {
+          "original": "explicitly states that fashion brands can better cater to them by offering",
+          "current": "explicitly states that fashion brands can better cater to them by offering",
+          "label": "explicitly states that fashion brands can better cater to them by offering"
+        },
+        {
+          "original": "customizable products",
+          "current": "customizable products",
+          "label": "customizable products"
+        },
+        {
+          "original": ", the current market treats them as",
+          "current": ", the current market treats them as",
+          "label": ", the current market treats them as"
+        },
+        {
+          "original": "passive consumers",
+          "current": "passive consumers",
+          "label": "passive consumers"
+        },
+        {
+          "original": "\" rather than active participants. Furthermore,",
+          "current": "\" rather than active participants. Furthermore,",
+          "label": "\" rather than active participants. Furthermore,"
+        },
+        {
+          "original": "defines DIY fashion as customizing clothing themselves, actively",
+          "current": "defines DIY fashion as customizing clothing themselves, actively",
+          "label": "defines DIY fashion as customizing clothing themselves, actively"
+        },
+        {
+          "original": "seeking textile enhancements.",
+          "current": "seeking textile enhancements.",
+          "label": "seeking textile enhancements."
+        },
+        {
+          "original": "Research proves that when consumers are",
+          "current": "Research proves that when consumers are",
+          "label": "Research proves that when consumers are"
+        },
+        {
+          "original": "involved in customizing a produc",
+          "current": "involved in customizing a produc",
+          "label": "involved in customizing a produc"
+        },
+        {
+          "original": "willingness to pay",
+          "current": "willingness to pay",
+          "label": "willingness to pay"
+        },
+        {
+          "original": "without breaking the rigid manufacturing supply chain.",
+          "current": "without breaking the rigid manufacturing supply chain.",
+          "label": "without breaking the rigid manufacturing supply chain."
+        },
+        {
+          "original": "The industry lacks a",
+          "current": "The industry lacks a",
+          "label": "The industry lacks a"
+        },
+        {
+          "original": "dedicated sizing system for Indian foot anatomy",
+          "current": "dedicated sizing system for Indian foot anatomy",
+          "label": "dedicated sizing system for Indian foot anatomy"
+        },
+        {
+          "original": ", relying on Western molds. Additionally, brands curate inventory regionally but fail at",
+          "current": ", relying on Western molds. Additionally, brands curate inventory regionally but fail at",
+          "label": ", relying on Western molds. Additionally, brands curate inve..."
+        },
+        {
+          "original": "product-level modularity.",
+          "current": "product-level modularity.",
+          "label": "product-level modularity."
+        },
+        {
+          "original": "There was no system allowing a user to easily swap in authentic Indian textiles like a Kalamkari weave or an Ikat patch.",
+          "current": "There was no system allowing a user to easily swap in authentic Indian textiles like a Kalamkari weave or an Ikat patch.",
+          "label": "There was no system allowing a user to easily swap in authen..."
+        },
+        {
+          "original": "View Market Research &amp; Strategy (PDF)",
+          "current": "View Market Research &amp; Strategy (PDF)",
+          "label": "View Market Research &amp; Strategy (PDF)"
+        },
+        {
+          "original": "02. The Product &amp; The Experience",
+          "current": "02. The Product &amp; The Experience",
+          "label": "02. The Product &amp; The Experience"
+        },
+        {
+          "original": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is a digital platform and modular sneaker brand designed for active creation.",
+          "current": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is a digital platform and modular sneaker brand designed for active creation.",
+          "label": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is ..."
+        },
+        {
+          "original": "The core product is a base sneaker engineered specifically for Indian foot anatomy. The upper features designated modular zones (like the side panel or heel tab).&nbsp;Instead of buying a static shoe, the user buys a canvas and a set of authentic, hyper-local fabric patches that physically attach to the shoe",
+          "current": "The core product is a base sneaker engineered specifically for Indian foot anatomy. The upper features designated modular zones (like the side panel or heel tab).&nbsp;Instead of buying a static shoe, the user buys a canvas and a set of authentic, hyper-local fabric patches that physically attach to the shoe",
+          "label": "The core product is a base sneaker engineered specifically f..."
+        },
+        {
+          "original": "The user journey bridges the digital and physical worlds. The user goes online, visually builds their shoe using a digital customizer, and receives a physical kit to assemble at home.&nbsp;This satisfies the user's craving for DIY fashion while creating a deep, psychological \"IKEA effect\" bond with the product.",
+          "current": "The user journey bridges the digital and physical worlds. The user goes online, visually builds their shoe using a digital customizer, and receives a physical kit to assemble at home.&nbsp;This satisfies the user's craving for DIY fashion while creating a deep, psychological \"IKEA effect\" bond with the product.",
+          "label": "The user journey bridges the digital and physical worlds. Th..."
+        },
+        {
+          "original": "03. Collaborative Branding &amp; Visual Identity",
+          "current": "03. Collaborative Branding &amp; Visual Identity",
+          "label": "03. Collaborative Branding &amp; Visual Identity"
+        },
+        {
+          "original": "To bring Svaroots to life digitally, I needed a visual foundation that balanced traditional Indian craft with modern e-commerce usability.",
+          "current": "To bring Svaroots to life digitally, I needed a visual foundation that balanced traditional Indian craft with modern e-commerce usability.",
+          "label": "To bring Svaroots to life digitally, I needed a visual found..."
+        },
+        {
+          "original": "Logo Explorations:",
+          "current": "Logo Explorations:",
+          "label": "Logo Explorations:"
+        },
+        {
+          "original": "Our logo uses a spiral to represent self-expression, shaped as a shoe print to reflect sneakers as a personal medium for expression. Combined with a traditional Indian motif and enclosed within a patch form, the mark reflects cultural identity and the reversible patch system of the brand.",
+          "current": "Our logo uses a spiral to represent self-expression, shaped as a shoe print to reflect sneakers as a personal medium for expression. Combined with a traditional Indian motif and enclosed within a patch form, the mark reflects cultural identity and the reversible patch system of the brand.",
+          "label": "Our logo uses a spiral to represent self-expression, shaped ..."
+        },
+        {
+          "original": "Our brand color palette is meant to bridge marketing communications and product interface in order to enhance familiarity and visual recognition.",
+          "current": "Our brand color palette is meant to bridge marketing communications and product interface in order to enhance familiarity and visual recognition.",
+          "label": "Our brand color palette is meant to bridge marketing communi..."
+        },
+        {
+          "original": "Represents the \"Trend.\" It is the color of the global urban landscape, bold, fast-paced, and modern. It signifies the energy of self-expression and the \"Manhattan\" ambition of the brand.",
+          "current": "Represents the \"Trend.\" It is the color of the global urban landscape, bold, fast-paced, and modern. It signifies the energy of self-expression and the \"Manhattan\" ambition of the brand.",
+          "label": "Represents the \"Trend.\" It is the color of the global urban ..."
+        },
+        {
+          "original": "Represents the \"Traditional.\" A deep, reliable tone that mirrors the historical Indigo dyes used in Indian textiles. It anchors our innovative Velcro-patch system in authenticity and craft.",
+          "current": "Represents the \"Traditional.\" A deep, reliable tone that mirrors the historical Indigo dyes used in Indian textiles. It anchors our innovative Velcro-patch system in authenticity and craft.",
+          "label": "Represents the \"Traditional.\" A deep, reliable tone that mir..."
+        },
+        {
+          "original": "Used to highlight versatility and sustainability, the bottle green adds balance to the palette while reinforcing the brand’s connection to craft, adaptability, and mindful self-expression.",
+          "current": "Used to highlight versatility and sustainability, the bottle green adds balance to the palette while reinforcing the brand’s connection to craft, adaptability, and mindful self-expression.",
+          "label": "Used to highlight versatility and sustainability, the bottle..."
+        },
+        {
+          "original": "View Full Brand Guidelines &amp; Style Guide (PDF)",
+          "current": "View Full Brand Guidelines &amp; Style Guide (PDF)",
+          "label": "View Full Brand Guidelines &amp; Style Guide (PDF)"
+        },
+        {
+          "original": "05. Information Architecture",
+          "current": "05. Information Architecture",
+          "label": "05. Information Architecture"
+        },
+        {
+          "original": "06. Foundational Design System",
+          "current": "06. Foundational Design System",
+          "label": "06. Foundational Design System"
+        },
+        {
+          "original": "07. Website Design",
+          "current": "07. Website Design",
+          "label": "07. Website Design"
+        },
+        {
+          "original": "Customization Page (3D Lab)",
+          "current": "Customization Page (3D Lab)",
+          "label": "Customization Page (3D Lab)"
+        },
+        {
+          "original": "Our Artisans Screen",
+          "current": "Our Artisans Screen",
+          "label": "Our Artisans Screen"
+        },
+        {
+          "original": "08. Dashboard Design",
+          "current": "08. Dashboard Design",
+          "label": "08. Dashboard Design"
+        },
+        {
+          "original": "I designed a comprehensive Content &amp; CMS Dashboard to handle end-to-end operations.",
+          "current": "I designed a comprehensive Content &amp; CMS Dashboard to handle end-to-end operations.",
+          "label": "I designed a comprehensive Content &amp; CMS Dashboard to ha..."
+        },
+        {
+          "original": "Inventory Management Page",
+          "current": "Inventory Management Page",
+          "label": "Inventory Management Page"
+        },
+        {
+          "original": "Click here for Working Prototype",
+          "current": "Click here for Working Prototype",
+          "label": "Click here for Working Prototype"
+        },
+        {
+          "original": "09. Key Learnings",
+          "current": "09. Key Learnings",
+          "label": "09. Key Learnings"
+        },
+        {
+          "original": "Taking Svaroots from zero to one taught me that a beautiful UI cannot hide a broken system. Bridging the gap between the B2C consumer customizer and the B2B admin dashboard proved that successful product design requires viewing the platform as a living ecosystem. Hand-coding the MVP solidified my belief that the best design decisions are made when you deeply understand both business strategy and technical constraints.",
+          "current": "Taking Svaroots from zero to one taught me that a beautiful UI cannot hide a broken system. Bridging the gap between the B2C consumer customizer and the B2B admin dashboard proved that successful product design requires viewing the platform as a living ecosystem. Hand-coding the MVP solidified my belief that the best design decisions are made when you deeply understand both business strategy and technical constraints.",
+          "label": "Taking Svaroots from zero to one taught me that a beautiful ..."
+        },
+        {
+          "original": "No headings found on page",
+          "current": "No headings found on page",
+          "label": "No headings found on page"
+        },
+        {
+          "original": "typeof document",
+          "current": "typeof document",
+          "label": "typeof document"
+        },
+        {
+          "original": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "current": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "label": "= sampleSize / 2);\n        return hasSignals && hasStructure..."
+        }
+      ],
+      "imageMap": [
+        {
+          "original": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png",
+          "current": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png",
+          "current": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+          "current": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/f3iKtoqPNgx18JnHC1vRJ3kzo.png",
+          "current": "https://framerusercontent.com/images/f3iKtoqPNgx18JnHC1vRJ3kzo.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Jjqw7gaYMOBiFehCRvyVEgTL4s.png",
+          "current": "https://framerusercontent.com/images/Jjqw7gaYMOBiFehCRvyVEgTL4s.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/U44SVs9kd3pfzS0dP2gzYUv7c.png",
+          "current": "https://framerusercontent.com/images/U44SVs9kd3pfzS0dP2gzYUv7c.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/lsPmtZT4aqTgvziuzhVSCPaK8.png",
+          "current": "https://framerusercontent.com/images/lsPmtZT4aqTgvziuzhVSCPaK8.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/7VGab5mkPnQT4fqon4OD2NxjQF0.gif",
+          "current": "https://framerusercontent.com/images/7VGab5mkPnQT4fqon4OD2NxjQF0.gif"
+        },
+        {
+          "original": "https://framerusercontent.com/images/q9YvNx6zJenxENZ8TRe2ygzAb4.png",
+          "current": "https://framerusercontent.com/images/q9YvNx6zJenxENZ8TRe2ygzAb4.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/VRSJlWlqml4xb2O9zhpxIMCeu90.png",
+          "current": "https://framerusercontent.com/images/VRSJlWlqml4xb2O9zhpxIMCeu90.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MMvrQqbng8KEkGedoO1FlCRuQzQ.png",
+          "current": "https://framerusercontent.com/images/MMvrQqbng8KEkGedoO1FlCRuQzQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/SaE5aeM3loOvL6cTwYJsPy4yk00.png",
+          "current": "https://framerusercontent.com/images/SaE5aeM3loOvL6cTwYJsPy4yk00.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/hPlfLro0E88x2N9AkcywKuRr00.png",
+          "current": "https://framerusercontent.com/images/hPlfLro0E88x2N9AkcywKuRr00.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/YUm0XErA6z9YCAz1zpRGprfI.jpg",
+          "current": "https://framerusercontent.com/images/YUm0XErA6z9YCAz1zpRGprfI.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/hKGi9sVrLPTkGtBPaKaW7m34g.png",
+          "current": "https://framerusercontent.com/images/hKGi9sVrLPTkGtBPaKaW7m34g.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/vYnwl366oxoMD2EONxxssvcsPE.png",
+          "current": "https://framerusercontent.com/images/vYnwl366oxoMD2EONxxssvcsPE.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/OYDSJNmKOIGp2OhY9Voki4MgZQ.png",
+          "current": "https://framerusercontent.com/images/OYDSJNmKOIGp2OhY9Voki4MgZQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/AxmPvYQkM9nSL7LozCNbzh3cotQ.png",
+          "current": "https://framerusercontent.com/images/AxmPvYQkM9nSL7LozCNbzh3cotQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/0vd8Cx2XbJKasjZtYKMNtHKFok.png",
+          "current": "https://framerusercontent.com/images/0vd8Cx2XbJKasjZtYKMNtHKFok.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/lo04LJ9uVo3nJHjij9aqFBZuVk.png",
+          "current": "https://framerusercontent.com/images/lo04LJ9uVo3nJHjij9aqFBZuVk.png"
+        }
+      ]
+    },
+    {
+      "id": "broken-pots-2",
+      "slug": "broken-pots-2",
+      "outputPath": "broken-pots-2/index.html",
+      "templateFile": "templates/broken-pots-2.html",
+      "coverImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+      "meta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/broken-pots-2"
+      },
+      "_originalMeta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/broken-pots-2"
+      },
+      "contentMap": [
+        {
+          "original": "Digvijay Portfolio",
+          "current": "Digvijay Portfolio",
+          "label": "Digvijay Portfolio"
+        },
+        {
+          "original": "Matkarma: A B2C circular economy marketplace",
+          "current": "Matkarma: A B2C circular economy marketplace",
+          "label": "Matkarma: A B2C circular economy marketplace"
+        },
+        {
+          "original": "B2C Marketplace &amp; Service Design",
+          "current": "B2C Marketplace &amp; Service Design",
+          "label": "B2C Marketplace &amp; Service Design"
+        },
+        {
+          "original": "Pottery, one of the oldest professions in the world, involving significant skills and precision is overlooked these days, this sector faces many problems and lacks major interventions and support. This case study tackles one such major problem : the loss of time, value and money incurred due to pots breakage.",
+          "current": "Pottery, one of the oldest professions in the world, involving significant skills and precision is overlooked these days, this sector faces many problems and lacks major interventions and support. This case study tackles one such major problem : the loss of time, value and money incurred due to pots breakage.",
+          "label": "Pottery, one of the oldest professions in the world, involvi..."
+        },
+        {
+          "original": "01. The Problem",
+          "current": "01. The Problem",
+          "label": "01. The Problem"
+        },
+        {
+          "original": "Professional potters and pot sellers face significant challenges with broken and failed ceramic pieces, resulting in material waste, financial losses, and environmental impact. Currently, there is no systematic approach to managing or repurposing these broken pieces.",
+          "current": "Professional potters and pot sellers face significant challenges with broken and failed ceramic pieces, resulting in material waste, financial losses, and environmental impact. Currently, there is no systematic approach to managing or repurposing these broken pieces.",
+          "label": "Professional potters and pot sellers face significant challe..."
+        },
+        {
+          "original": "Average material waste",
+          "current": "Average material waste",
+          "label": "Average material waste"
+        },
+        {
+          "original": "02. Discovery &amp; Research",
+          "current": "02. Discovery &amp; Research",
+          "label": "02. Discovery &amp; Research"
+        },
+        {
+          "original": "To try to solve this problem I needed to get into the root of the process of pottery, understanding the workflow and connect with the potters to understand their emotional aspects as well as their pain points and touch points.",
+          "current": "To try to solve this problem I needed to get into the root of the process of pottery, understanding the workflow and connect with the potters to understand their emotional aspects as well as their pain points and touch points.",
+          "label": "To try to solve this problem I needed to get into the root o..."
+        },
+        {
+          "original": "2.1 Contextual Inquiry &amp; Field Visits",
+          "current": "2.1 Contextual Inquiry &amp; Field Visits",
+          "label": "2.1 Contextual Inquiry &amp; Field Visits"
+        },
+        {
+          "original": "Interview session with discussing journey and identifying frustrations and pain points",
+          "current": "Interview session with discussing journey and identifying frustrations and pain points",
+          "label": "Interview session with discussing journey and identifying fr..."
+        },
+        {
+          "original": "Observation of the various shapes and sizes of broken pieces of various pots",
+          "current": "Observation of the various shapes and sizes of broken pieces of various pots",
+          "label": "Observation of the various shapes and sizes of broken pieces of various pots"
+        },
+        {
+          "original": "Inspecting the various  shapes and sizes of pots she sells and observing her organization of pots",
+          "current": "Inspecting the various  shapes and sizes of pots she sells and observing her organization of pots",
+          "label": "Inspecting the various  shapes and sizes of pots she sells a..."
+        },
+        {
+          "original": "Obersving and Understanding the process:",
+          "current": "Obersving and Understanding the process:",
+          "label": "Obersving and Understanding the process:"
+        },
+        {
+          "original": "Preparing and mixing the clay",
+          "current": "Preparing and mixing the clay",
+          "label": "Preparing and mixing the clay"
+        },
+        {
+          "original": "Shaping the clay on a potter's wheel",
+          "current": "Shaping the clay on a potter's wheel",
+          "label": "Shaping the clay on a potter's wheel"
+        },
+        {
+          "original": "Placing the shaped pots out to dry",
+          "current": "Placing the shaped pots out to dry",
+          "label": "Placing the shaped pots out to dry"
+        },
+        {
+          "original": "Firing the pots in a kiln",
+          "current": "Firing the pots in a kiln",
+          "label": "Firing the pots in a kiln"
+        },
+        {
+          "original": "Getting the hands on experience of the process",
+          "current": "Getting the hands on experience of the process",
+          "label": "Getting the hands on experience of the process"
+        },
+        {
+          "original": "Key Observations from the Field:",
+          "current": "Key Observations from the Field:",
+          "label": "Key Observations from the Field:"
+        },
+        {
+          "original": "The Burden of Storage:",
+          "current": "The Burden of Storage:",
+          "label": "The Burden of Storage:"
+        },
+        {
+          "original": "&nbsp;Artisans lack proper disposal methods. Piles of sharp, broken shards are stored in cramped workspaces, creating safety hazards.",
+          "current": "&nbsp;Artisans lack proper disposal methods. Piles of sharp, broken shards are stored in cramped workspaces, creating safety hazards.",
+          "label": "&nbsp;Artisans lack proper disposal methods. Piles of sharp,..."
+        },
+        {
+          "original": "Lack of Sorting Mechanisms:",
+          "current": "Lack of Sorting Mechanisms:",
+          "label": "Lack of Sorting Mechanisms:"
+        },
+        {
+          "original": "&nbsp;Broken pieces are treated as uniform trash. There is no existing mental model for categorizing shards by color, weight, or curvature.",
+          "current": "&nbsp;Broken pieces are treated as uniform trash. There is no existing mental model for categorizing shards by color, weight, or curvature.",
+          "label": "&nbsp;Broken pieces are treated as uniform trash. There is n..."
+        },
+        {
+          "original": "The Digital Divide:",
+          "current": "The Digital Divide:",
+          "label": "The Digital Divide:"
+        },
+        {
+          "original": "&nbsp;The artisans possess immense physical skill but generally have low digital literacy. Any technological solution introduced would need an incredibly low barrier to entry.",
+          "current": "&nbsp;The artisans possess immense physical skill but generally have low digital literacy. Any technological solution introduced would need an incredibly low barrier to entry.",
+          "label": "&nbsp;The artisans possess immense physical skill but genera..."
+        },
+        {
+          "original": "03. Qualitative Synthesis: The Voice of the Artisans",
+          "current": "03. Qualitative Synthesis: The Voice of the Artisans",
+          "label": "03. Qualitative Synthesis: The Voice of the Artisans"
+        },
+        {
+          "original": "Through contextual interviews, I gathered firsthand accounts of the artisans' daily struggles:",
+          "current": "Through contextual interviews, I gathered firsthand accounts of the artisans' daily struggles:",
+          "label": "Through contextual interviews, I gathered firsthand accounts..."
+        },
+        {
+          "original": "Legacy &amp; Identity",
+          "current": "Legacy &amp; Identity",
+          "label": "Legacy &amp; Identity"
+        },
+        {
+          "original": "I didn’t study much, but I managed to learn how to read and write in Telugu.",
+          "current": "I didn’t study much, but I managed to learn how to read and write in Telugu.",
+          "label": "I didn’t study much, but I managed to learn how to read and write in Telugu."
+        },
+        {
+          "original": "Selling pots for over 25 years to continue our family legacy.",
+          "current": "Selling pots for over 25 years to continue our family legacy.",
+          "label": "Selling pots for over 25 years to continue our family legacy."
+        },
+        {
+          "original": "Emotional &amp; Financial Burnout",
+          "current": "Emotional &amp; Financial Burnout",
+          "label": "Emotional &amp; Financial Burnout"
+        },
+        {
+          "original": "❝ I feel sad when people bargain below a profitable price and still leave unhappy. ❞",
+          "current": "❝ I feel sad when people bargain below a profitable price and still leave unhappy. ❞",
+          "label": "❝ I feel sad when people bargain below a profitable price an..."
+        },
+        {
+          "original": "❝ The most frustrating part is seeing perfectly good work destroyed, the investment lost, and no way to recover it.❞",
+          "current": "❝ The most frustrating part is seeing perfectly good work destroyed, the investment lost, and no way to recover it.❞",
+          "label": "❝ The most frustrating part is seeing perfectly good work de..."
+        },
+        {
+          "original": "By synthesizing the field research, I mapped out the primary friction points for both sides of our proposed marketplace and created persona:",
+          "current": "By synthesizing the field research, I mapped out the primary friction points for both sides of our proposed marketplace and created persona:",
+          "label": "By synthesizing the field research, I mapped out the primary..."
+        },
+        {
+          "original": "56 yrs old · Hyderabad",
+          "current": "56 yrs old · Hyderabad",
+          "label": "56 yrs old · Hyderabad"
+        },
+        {
+          "original": "❝want to make sure no pot goes to waste, and every customer leaves\nmy stall happy. ❞",
+          "current": "❝want to make sure no pot goes to waste, and every customer leaves\nmy stall happy. ❞",
+          "label": "❝want to make sure no pot goes to waste, and every customer ..."
+        },
+        {
+          "original": "Pots break during transport — losses with no recovery",
+          "current": "Pots break during transport — losses with no recovery",
+          "label": "Pots break during transport — losses with no recovery"
+        },
+        {
+          "original": "Seasonal demand dips leave her with unsold stock",
+          "current": "Seasonal demand dips leave her with unsold stock",
+          "label": "Seasonal demand dips leave her with unsold stock"
+        },
+        {
+          "original": "Heavy competition from plastic alternatives",
+          "current": "Heavy competition from plastic alternatives",
+          "label": "Heavy competition from plastic alternatives"
+        },
+        {
+          "original": "Customers bargain aggressively, shrinking margins",
+          "current": "Customers bargain aggressively, shrinking margins",
+          "label": "Customers bargain aggressively, shrinking margins"
+        },
+        {
+          "original": "Stand out with unique, quality earthen pottery",
+          "current": "Stand out with unique, quality earthen pottery",
+          "label": "Stand out with unique, quality earthen pottery"
+        },
+        {
+          "original": "Find ways to upcycle or resell broken pots",
+          "current": "Find ways to upcycle or resell broken pots",
+          "label": "Find ways to upcycle or resell broken pots"
+        },
+        {
+          "original": "Maximise earnings during peak festive seasons",
+          "current": "Maximise earnings during peak festive seasons",
+          "label": "Maximise earnings during peak festive seasons"
+        },
+        {
+          "original": "A system to recover losses from breakage",
+          "current": "A system to recover losses from breakage",
+          "label": "A system to recover losses from breakage"
+        },
+        {
+          "original": "Storage and stocking structure between seasons",
+          "current": "Storage and stocking structure between seasons",
+          "label": "Storage and stocking structure between seasons"
+        },
+        {
+          "original": "Tools to plan supply around peak demand periods",
+          "current": "Tools to plan supply around peak demand periods",
+          "label": "Tools to plan supply around peak demand periods"
+        },
+        {
+          "original": "Wakes before dawn to prep and stack pots",
+          "current": "Wakes before dawn to prep and stack pots",
+          "label": "Wakes before dawn to prep and stack pots"
+        },
+        {
+          "original": "Tracks daily sales mentally — no written records",
+          "current": "Tracks daily sales mentally — no written records",
+          "label": "Tracks daily sales mentally — no written records"
+        },
+        {
+          "original": "Relies on repeat customers and word-of-mouth",
+          "current": "Relies on repeat customers and word-of-mouth",
+          "label": "Relies on repeat customers and word-of-mouth"
+        },
+        {
+          "original": "48 yrs old · Pune",
+          "current": "48 yrs old · Pune",
+          "label": "48 yrs old · Pune"
+        },
+        {
+          "original": "Traditional Potter",
+          "current": "Traditional Potter",
+          "label": "Traditional Potter"
+        },
+        {
+          "original": "❝ My hands have shaped thousands of pots, but I can't control what happens after they leave my kiln. ❞",
+          "current": "❝ My hands have shaped thousands of pots, but I can't control what happens after they leave my kiln. ❞",
+          "label": "❝ My hands have shaped thousands of pots, but I can't contro..."
+        },
+        {
+          "original": "25–30% breakage rate during firing and transport",
+          "current": "25–30% breakage rate during firing and transport",
+          "label": "25–30% breakage rate during firing and transport"
+        },
+        {
+          "original": "Fully dependent on middlemen — margins are paper thin",
+          "current": "Fully dependent on middlemen — margins are paper thin",
+          "label": "Fully dependent on middlemen — margins are paper thin"
+        },
+        {
+          "original": "No digital presence to reach urban buyers",
+          "current": "No digital presence to reach urban buyers",
+          "label": "No digital presence to reach urban buyers"
+        },
+        {
+          "original": "Seasonal demand dips cause months of income loss",
+          "current": "Seasonal demand dips cause months of income loss",
+          "label": "Seasonal demand dips cause months of income loss"
+        },
+        {
+          "original": "Sell directly to buyers and cut out middlemen",
+          "current": "Sell directly to buyers and cut out middlemen",
+          "label": "Sell directly to buyers and cut out middlemen"
+        },
+        {
+          "original": "Find a channel to repurpose or resell broken pieces",
+          "current": "Find a channel to repurpose or resell broken pieces",
+          "label": "Find a channel to repurpose or resell broken pieces"
+        },
+        {
+          "original": "Get fair, consistent pricing for his craft",
+          "current": "Get fair, consistent pricing for his craft",
+          "label": "Get fair, consistent pricing for his craft"
+        }
+      ],
+      "imageMap": [
+        {
+          "original": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png",
+          "current": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png",
+          "current": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+          "current": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/8ks4DuLb9cDjoLgGzVJMKyzrepM.png",
+          "current": "https://framerusercontent.com/images/8ks4DuLb9cDjoLgGzVJMKyzrepM.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/3hnboT9dCOITFOdLuh3AASPUff8.jpg",
+          "current": "https://framerusercontent.com/images/3hnboT9dCOITFOdLuh3AASPUff8.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/unscXLypaikGpTMOumyrQUb1iqo.svg",
+          "current": "https://framerusercontent.com/images/unscXLypaikGpTMOumyrQUb1iqo.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/wRPbg5TggYC0BAwttiCfxWk8Em8.svg",
+          "current": "https://framerusercontent.com/images/wRPbg5TggYC0BAwttiCfxWk8Em8.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Jtg11rd9rUuQZuZZBRQKSviOSvY.png",
+          "current": "https://framerusercontent.com/images/Jtg11rd9rUuQZuZZBRQKSviOSvY.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/QYTHOY7VeysaoSYB0fpnDqfMM.jpg",
+          "current": "https://framerusercontent.com/images/QYTHOY7VeysaoSYB0fpnDqfMM.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/rMFvPss2FFJIjUjQmEp04bFdPI.jpg",
+          "current": "https://framerusercontent.com/images/rMFvPss2FFJIjUjQmEp04bFdPI.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/7M6Jmr6vnxP5GKK4mmbxDnjk8sk.jpg",
+          "current": "https://framerusercontent.com/images/7M6Jmr6vnxP5GKK4mmbxDnjk8sk.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/1X26HiWEL3Cm1AS8o8NGW38yc.png",
+          "current": "https://framerusercontent.com/images/1X26HiWEL3Cm1AS8o8NGW38yc.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/954tujc5sw0Hm97RhP5UzHX7fmY.png",
+          "current": "https://framerusercontent.com/images/954tujc5sw0Hm97RhP5UzHX7fmY.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/y0OBGFxhhOSh3s4PcQma1vtpL0.png",
+          "current": "https://framerusercontent.com/images/y0OBGFxhhOSh3s4PcQma1vtpL0.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/ECmXoK7ZHm7vE44y3MEdrFNDA.svg",
+          "current": "https://framerusercontent.com/images/ECmXoK7ZHm7vE44y3MEdrFNDA.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/JKTNXhRsZcnfXPsrrzJs66V3E.svg",
+          "current": "https://framerusercontent.com/images/JKTNXhRsZcnfXPsrrzJs66V3E.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Hj0Q9WCDnVnGn73CrV7IIj36CrM.svg",
+          "current": "https://framerusercontent.com/images/Hj0Q9WCDnVnGn73CrV7IIj36CrM.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/AxXWqWKg3buQOPOjaX44sgvJLI.svg",
+          "current": "https://framerusercontent.com/images/AxXWqWKg3buQOPOjaX44sgvJLI.svg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/qYClW6xMxbfyVWkkHukmqJbIKEg.jpg",
+          "current": "https://framerusercontent.com/images/qYClW6xMxbfyVWkkHukmqJbIKEg.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/pZBFvlM7xcYjFgO6xFJ1nRgDDM.png",
+          "current": "https://framerusercontent.com/images/pZBFvlM7xcYjFgO6xFJ1nRgDDM.png"
+        }
+      ]
+    },
+    {
+      "id": "emerald",
+      "slug": "emerald",
+      "outputPath": "emerald/index.html",
+      "templateFile": "templates/emerald.html",
+      "coverImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+      "meta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/emerald"
+      },
+      "_originalMeta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/emerald"
+      },
+      "contentMap": [
+        {
+          "original": "Digvijay Portfolio",
+          "current": "Digvijay Portfolio",
+          "label": "Digvijay Portfolio"
+        },
+        {
+          "original": "Emerald Design System",
+          "current": "Emerald Design System",
+          "label": "Emerald Design System"
+        },
+        {
+          "original": "Foundational Design System",
+          "current": "Foundational Design System",
+          "label": "Foundational Design System"
+        },
+        {
+          "original": "(Academic Project)",
+          "current": "(Academic Project)",
+          "label": "(Academic Project)"
+        },
+        {
+          "original": "Build your own Visual Design System for Digital Interfaces, by taking inspiration from non-intuitive things/ideas. Adapt the 'look and feel' and materiality into a legible visual design system. Create the design foundation, styles, tokens, components and a demo protoype based on your inspiration.",
+          "current": "Build your own Visual Design System for Digital Interfaces, by taking inspiration from non-intuitive things/ideas. Adapt the 'look and feel' and materiality into a legible visual design system. Create the design foundation, styles, tokens, components and a demo protoype based on your inspiration.",
+          "label": "Build your own Visual Design System for Digital Interfaces, ..."
+        },
+        {
+          "original": "02. Element and Property Chosen",
+          "current": "02. Element and Property Chosen",
+          "label": "02. Element and Property Chosen"
+        },
+        {
+          "original": "I’m designing a design system based on&nbsp;",
+          "current": "I’m designing a design system based on&nbsp;",
+          "label": "I’m designing a design system based on&nbsp;"
+        },
+        {
+          "original": ", inspired by the&nbsp;",
+          "current": ", inspired by the&nbsp;",
+          "label": ", inspired by the&nbsp;"
+        },
+        {
+          "original": "properties along with its",
+          "current": "properties along with its",
+          "label": "properties along with its"
+        },
+        {
+          "original": "way provides a pleasant feeling. It can be suitable for",
+          "current": "way provides a pleasant feeling. It can be suitable for",
+          "label": "way provides a pleasant feeling. It can be suitable for"
+        },
+        {
+          "original": "luxury products",
+          "current": "luxury products",
+          "label": "luxury products"
+        },
+        {
+          "original": "03. Discovery &amp; Research",
+          "current": "03. Discovery &amp; Research",
+          "label": "03. Discovery &amp; Research"
+        },
+        {
+          "original": "What is a gemstone?",
+          "current": "What is a gemstone?",
+          "label": "What is a gemstone?"
+        },
+        {
+          "original": "A gemstone is a valuable piece of mineral crystal, usually mined from the ground. Gemstones are often used as decorative elements in&nbsp;",
+          "current": "A gemstone is a valuable piece of mineral crystal, usually mined from the ground. Gemstones are often used as decorative elements in&nbsp;",
+          "label": "A gemstone is a valuable piece of mineral crystal, usually m..."
+        },
+        {
+          "original": "&nbsp;and other adornments.",
+          "current": "&nbsp;and other adornments.",
+          "label": "&nbsp;and other adornments."
+        },
+        {
+          "original": "Colors of gemstones",
+          "current": "Colors of gemstones",
+          "label": "Colors of gemstones"
+        },
+        {
+          "original": "The difference in gemstone colours is based on the trace elements they contain, physical differences in the crystals, and the way they refract light. For instance, a physical process called “charge transfer”, as well as the presence of titanium and iron, are what produce the&nbsp;blue colour&nbsp;in sapphires.",
+          "current": "The difference in gemstone colours is based on the trace elements they contain, physical differences in the crystals, and the way they refract light. For instance, a physical process called “charge transfer”, as well as the presence of titanium and iron, are what produce the&nbsp;blue colour&nbsp;in sapphires.",
+          "label": "The difference in gemstone colours is based on the trace ele..."
+        },
+        {
+          "original": "Gemstone&nbsp; lore",
+          "current": "Gemstone&nbsp; lore",
+          "label": "Gemstone&nbsp; lore"
+        },
+        {
+          "original": "The idea that gemstones possess special powers of healing or luck is ancient. In Europe throughout the Middle Ages, medicine men sold powdered gems for medicinal purposes. This practice is still known in some parts of Asia today.",
+          "current": "The idea that gemstones possess special powers of healing or luck is ancient. In Europe throughout the Middle Ages, medicine men sold powdered gems for medicinal purposes. This practice is still known in some parts of Asia today.",
+          "label": "The idea that gemstones possess special powers of healing or..."
+        },
+        {
+          "original": "Emeralds are formed when chromium, vanadium, and iron are present in the mineral beryl. The varying presence of these three elements gives emerald its range of color. Chromium and vanadium make an intense green color. Iron gives the stone a bluish tint.",
+          "current": "Emeralds are formed when chromium, vanadium, and iron are present in the mineral beryl. The varying presence of these three elements gives emerald its range of color. Chromium and vanadium make an intense green color. Iron gives the stone a bluish tint.",
+          "label": "Emeralds are formed when chromium, vanadium, and iron are pr..."
+        },
+        {
+          "original": "Since emeralds typically form in",
+          "current": "Since emeralds typically form in",
+          "label": "Since emeralds typically form in"
+        },
+        {
+          "original": "six-sided prisms",
+          "current": "six-sided prisms",
+          "label": "six-sided prisms"
+        },
+        {
+          "original": ", they are naturally suited for, and often shaped into, the emerald cut.",
+          "current": ", they are naturally suited for, and often shaped into, the emerald cut.",
+          "label": ", they are naturally suited for, and often shaped into, the emerald cut."
+        },
+        {
+          "original": "4.2 History and Importance",
+          "current": "4.2 History and Importance",
+          "label": "4.2 History and Importance"
+        },
+        {
+          "original": "are among the “big four” precious gemstones which make them rare and sign of",
+          "current": "are among the “big four” precious gemstones which make them rare and sign of",
+          "label": "are among the “big four” precious gemstones which make them rare and sign of"
+        },
+        {
+          "original": "and are also considered to carry",
+          "current": "and are also considered to carry",
+          "label": "and are also considered to carry"
+        },
+        {
+          "original": "1. Cleopatra’s Emeralds – Symbolized ancient Egypt’s wealth and Cleopatra’s divine rule, marking one of the earliest royal uses of emeralds.",
+          "current": "1. Cleopatra’s Emeralds – Symbolized ancient Egypt’s wealth and Cleopatra’s divine rule, marking one of the earliest royal uses of emeralds.",
+          "label": "1. Cleopatra’s Emeralds – Symbolized ancient Egypt’s wealth ..."
+        },
+        {
+          "original": "4.3 Recognition for its color",
+          "current": "4.3 Recognition for its color",
+          "label": "4.3 Recognition for its color"
+        },
+        {
+          "original": "Pantone named it the Color of the Year for 2013 because of the “luxury and elegance (it brings) to the palette.”",
+          "current": "Pantone named it the Color of the Year for 2013 because of the “luxury and elegance (it brings) to the palette.”",
+          "label": "Pantone named it the Color of the Year for 2013 because of t..."
+        },
+        {
+          "original": "05. Core Proprties Extraction",
+          "current": "05. Core Proprties Extraction",
+          "label": "05. Core Proprties Extraction"
+        },
+        {
+          "original": "From the research extracting the core properties of emerald gemstone its structure its textural depth and its colour, which was also recognised as 2013 Pantone colour of the year  extracting and noting all this information.",
+          "current": "From the research extracting the core properties of emerald gemstone its structure its textural depth and its colour, which was also recognised as 2013 Pantone colour of the year  extracting and noting all this information.",
+          "label": "From the research extracting the core properties of emerald ..."
+        },
+        {
+          "original": "Extracting Shape",
+          "current": "Extracting Shape",
+          "label": "Extracting Shape"
+        },
+        {
+          "original": "Extracting Color",
+          "current": "Extracting Color",
+          "label": "Extracting Color"
+        },
+        {
+          "original": "Extracting effect",
+          "current": "Extracting effect",
+          "label": "Extracting effect"
+        },
+        {
+          "original": "The unique crystalline structure of emeralds gives them that distinct glass-like effect.",
+          "current": "The unique crystalline structure of emeralds gives them that distinct glass-like effect.",
+          "label": "The unique crystalline structure of emeralds gives them that..."
+        },
+        {
+          "original": "Extracting typeface",
+          "current": "Extracting typeface",
+          "label": "Extracting typeface"
+        },
+        {
+          "original": "The typeface was inspired by the stone's sharp, clean cuts and royal appeal.",
+          "current": "The typeface was inspired by the stone's sharp, clean cuts and royal appeal.",
+          "label": "The typeface was inspired by the stone's sharp, clean cuts and royal appeal."
+        },
+        {
+          "original": "06. Translation Into Design System",
+          "current": "06. Translation Into Design System",
+          "label": "06. Translation Into Design System"
+        },
+        {
+          "original": "From the properties  listed down in the previous step, Crafted them into various colour tokens and components with their texture,  and effect of Emerald gemstone. Which includes its reflection properties and transparency.",
+          "current": "From the properties  listed down in the previous step, Crafted them into various colour tokens and components with their texture,  and effect of Emerald gemstone. Which includes its reflection properties and transparency.",
+          "label": "From the properties  listed down in the previous step, Craft..."
+        },
+        {
+          "original": "07. Implementation",
+          "current": "07. Implementation",
+          "label": "07. Implementation"
+        },
+        {
+          "original": "I chose to design a luxury car dealership app using this system because the rarity and inherent luxury of an emerald perfectly capture the exclusive, premium atmosphere of a high-end car showroom.",
+          "current": "I chose to design a luxury car dealership app using this system because the rarity and inherent luxury of an emerald perfectly capture the exclusive, premium atmosphere of a high-end car showroom.",
+          "label": "I chose to design a luxury car dealership app using this sys..."
+        },
+        {
+          "original": "08. Conclusion &amp; Takeaways",
+          "current": "08. Conclusion &amp; Takeaways",
+          "label": "08. Conclusion &amp; Takeaways"
+        },
+        {
+          "original": "Aesthetics vs. Accessibility:",
+          "current": "Aesthetics vs. Accessibility:",
+          "label": "Aesthetics vs. Accessibility:"
+        },
+        {
+          "original": "&nbsp;Balancing deep emerald dark-mode tones with metallic accents required strict contrast tuning to ensure WCAG compliance without sacrificing the premium feel.",
+          "current": "&nbsp;Balancing deep emerald dark-mode tones with metallic accents required strict contrast tuning to ensure WCAG compliance without sacrificing the premium feel.",
+          "label": "&nbsp;Balancing deep emerald dark-mode tones with metallic a..."
+        },
+        {
+          "original": "Technical Constraints:",
+          "current": "Technical Constraints:",
+          "label": "Technical Constraints:"
+        },
+        {
+          "original": "&nbsp;Troubleshooting live Figma embeds and background transparencies reinforced the importance of designing with final browser rendering in mind.",
+          "current": "&nbsp;Troubleshooting live Figma embeds and background transparencies reinforced the importance of designing with final browser rendering in mind.",
+          "label": "&nbsp;Troubleshooting live Figma embeds and background trans..."
+        },
+        {
+          "original": "Discipline vs. Freedom:",
+          "current": "Discipline vs. Freedom:",
+          "label": "Discipline vs. Freedom:"
+        },
+        {
+          "original": "&nbsp;Balancing strict system components with unique page layouts highlighted the necessity of building flexible design tokens from the start.",
+          "current": "&nbsp;Balancing strict system components with unique page layouts highlighted the necessity of building flexible design tokens from the start.",
+          "label": "&nbsp;Balancing strict system components with unique page la..."
+        },
+        {
+          "original": "No headings found on page",
+          "current": "No headings found on page",
+          "label": "No headings found on page"
+        },
+        {
+          "original": "typeof document",
+          "current": "typeof document",
+          "label": "typeof document"
+        },
+        {
+          "original": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "current": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "label": "= sampleSize / 2);\n        return hasSignals && hasStructure..."
+        }
+      ],
+      "imageMap": [
+        {
+          "original": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png",
+          "current": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png",
+          "current": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+          "current": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/1sg9zCvx76x1DnOT0Rcx2FKIaI.png",
+          "current": "https://framerusercontent.com/images/1sg9zCvx76x1DnOT0Rcx2FKIaI.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/cTBU9NGdDKJ6ZPIlKUCTgVQMk.png",
+          "current": "https://framerusercontent.com/images/cTBU9NGdDKJ6ZPIlKUCTgVQMk.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/DYrBMAjKVMRXJbyxrD0BJ8Znlw.png",
+          "current": "https://framerusercontent.com/images/DYrBMAjKVMRXJbyxrD0BJ8Znlw.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/TlkAxW5NjWQjEIAPCycXsetI.jpg",
+          "current": "https://framerusercontent.com/images/TlkAxW5NjWQjEIAPCycXsetI.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/u9rY58pRj246oTSIqXNUutRQtas.png",
+          "current": "https://framerusercontent.com/images/u9rY58pRj246oTSIqXNUutRQtas.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/k4l9n7369N3qjRRO6ZVO4yjlzM.png",
+          "current": "https://framerusercontent.com/images/k4l9n7369N3qjRRO6ZVO4yjlzM.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/raNvDb3seFsF0ChhSzPlGUvmnPc.png",
+          "current": "https://framerusercontent.com/images/raNvDb3seFsF0ChhSzPlGUvmnPc.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/e0ZokH8Xb1s8ZJAwRZuoKClaz0.png",
+          "current": "https://framerusercontent.com/images/e0ZokH8Xb1s8ZJAwRZuoKClaz0.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/907unHZgNeZbosjBijeFPShM.png",
+          "current": "https://framerusercontent.com/images/907unHZgNeZbosjBijeFPShM.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/HtcaeTGCiZhGs9wqpFkq4WKDU.png",
+          "current": "https://framerusercontent.com/images/HtcaeTGCiZhGs9wqpFkq4WKDU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/IsC4KG6czolgwBiZVqRwHTZE.png",
+          "current": "https://framerusercontent.com/images/IsC4KG6czolgwBiZVqRwHTZE.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/sopZCTgUzKPkDBy0OgzxjKIgY8.png",
+          "current": "https://framerusercontent.com/images/sopZCTgUzKPkDBy0OgzxjKIgY8.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/hmvbC8JgfomTl7aE5GkeBRkI.png",
+          "current": "https://framerusercontent.com/images/hmvbC8JgfomTl7aE5GkeBRkI.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/nzpgxGsrX0lDlqbYghbrVxNvHWw.png",
+          "current": "https://framerusercontent.com/images/nzpgxGsrX0lDlqbYghbrVxNvHWw.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/CqEakIoGrJzzWmIc3b76dkHNw.png",
+          "current": "https://framerusercontent.com/images/CqEakIoGrJzzWmIc3b76dkHNw.png"
+        }
+      ]
+    },
+    {
+      "id": "origin",
+      "slug": "origin",
+      "outputPath": "origin/index.html",
+      "templateFile": "templates/origin.html",
+      "coverImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+      "meta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/origin"
+      },
+      "_originalMeta": {
+        "title": "Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/origin"
+      },
+      "contentMap": [
+        {
+          "original": "Digvijay Portfolio",
+          "current": "Digvijay Portfolio",
+          "label": "Digvijay Portfolio"
+        },
+        {
+          "original": "A Designer with a Bachelor’s in Computer Applications, I design solutions that compute.",
+          "current": "A Designer with a Bachelor’s in Computer Applications, I design solutions that compute.",
+          "label": "A Designer with a Bachelor’s in Computer Applications, I des..."
+        },
+        {
+          "original": "My passion lies in the intersection of art and technology, creating visually captivating interfaces and elevating overall user experiences.",
+          "current": "My passion lies in the intersection of art and technology, creating visually captivating interfaces and elevating overall user experiences.",
+          "label": "My passion lies in the intersection of art and technology, c..."
+        },
+        {
+          "original": "When I'm not designing, you'll find me exploring the latest tech trends, indulging in some tasty food, writing blog posts, or playing chess.",
+          "current": "When I'm not designing, you'll find me exploring the latest tech trends, indulging in some tasty food, writing blog posts, or playing chess.",
+          "label": "When I'm not designing, you'll find me exploring the latest ..."
+        },
+        {
+          "original": "Master of  Design ( User Experience )",
+          "current": "Master of  Design ( User Experience )",
+          "label": "Master of  Design ( User Experience )"
+        },
+        {
+          "original": "MIT Institute of Design",
+          "current": "MIT Institute of Design",
+          "label": "MIT Institute of Design"
+        },
+        {
+          "original": "Bachelor of  Computer Applications",
+          "current": "Bachelor of  Computer Applications",
+          "label": "Bachelor of  Computer Applications"
+        },
+        {
+          "original": "Bhavans vivekananda college, Hyderabad",
+          "current": "Bhavans vivekananda college, Hyderabad",
+          "label": "Bhavans vivekananda college, Hyderabad"
+        },
+        {
+          "original": "How to Navigate",
+          "current": "How to Navigate",
+          "label": "How to Navigate"
+        },
+        {
+          "original": "Tap or click Next ➡ to reveal the next chapter of this heroic tale.",
+          "current": "Tap or click Next ➡ to reveal the next chapter of this heroic tale.",
+          "label": "Tap or click Next ➡ to reveal the next chapter of this heroic tale."
+        },
+        {
+          "original": "Each page unfolds a piece of the journey.",
+          "current": "Each page unfolds a piece of the journey.",
+          "label": "Each page unfolds a piece of the journey."
+        },
+        {
+          "original": "1. Cover……………………….………………………….01",
+          "current": "1. Cover……………………….………………………….01",
+          "label": "1. Cover……………………….………………………….01"
+        },
+        {
+          "original": "2. The Spark (Childhood)………………………….02",
+          "current": "2. The Spark (Childhood)………………………….02",
+          "label": "2. The Spark (Childhood)………………………….02"
+        },
+        {
+          "original": "3. Into the Code (Bachelor's)…..…………….….03",
+          "current": "3. Into the Code (Bachelor's)…..…………….….03",
+          "label": "3. Into the Code (Bachelor's)…..…………….….03"
+        },
+        {
+          "original": "4.The Bite(Figma Config 2024)…...……………04",
+          "current": "4.The Bite(Figma Config 2024)…...……………04",
+          "label": "4.The Bite(Figma Config 2024)…...……………04"
+        },
+        {
+          "original": "5. Becoming a Designer……………………………05",
+          "current": "5. Becoming a Designer……………………………05",
+          "label": "5. Becoming a Designer……………………………05"
+        },
+        {
+          "original": "6. To Be Continued.……….…………………………06",
+          "current": "6. To Be Continued.……….…………………………06",
+          "label": "6. To Be Continued.……….…………………………06"
+        },
+        {
+          "original": "Scroll down and press next to move to next chapter",
+          "current": "Scroll down and press next to move to next chapter",
+          "label": "Scroll down and press next to move to next chapter"
+        },
+        {
+          "original": "typeof document",
+          "current": "typeof document",
+          "label": "typeof document"
+        },
+        {
+          "original": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "current": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "label": "= sampleSize / 2);\n        return hasSignals && hasStructure..."
+        }
+      ],
+      "imageMap": [
+        {
+          "original": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png",
+          "current": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png",
+          "current": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+          "current": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/WZKi92RhUeSj3hfjpo86gSCS12c.jpg",
+          "current": "https://framerusercontent.com/images/WZKi92RhUeSj3hfjpo86gSCS12c.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/D2Ewhsx1xdcgjazFYn6txYlpG98.png",
+          "current": "https://framerusercontent.com/images/D2Ewhsx1xdcgjazFYn6txYlpG98.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/ZzGJdH1kWx9qqgrSPcbJsHV7q8.png",
+          "current": "https://framerusercontent.com/images/ZzGJdH1kWx9qqgrSPcbJsHV7q8.png"
+        }
+      ]
+    }
+  ]
+}

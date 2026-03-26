@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup · Portfolio Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>Portfolio Admin</h2>
+      <span>Digvijay · v1.0</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item"><span class="icon">📋</span> Case Studies</a>
+      <a href="deploy.html" class="nav-item"><span class="icon">🚀</span> Deploy</a>
+      <a href="setup.html" class="nav-item active"><span class="icon">⚙️</span> Setup</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Setup</h1>
+        <p class="page-subtitle">One-time configuration for GitHub, Vercel, and Cloudinary</p>
+      </div>
+    </div>
+
+    <!-- GitHub + Vercel setup -->
+    <div class="form-section" style="margin-bottom:20px;">
+      <div class="form-section-title">Step 1: GitHub + Vercel (One-time)</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">
+        Do this once. After this, hitting "Deploy" in the admin will push your changes and Vercel auto-deploys.
+      </p>
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Initialize git in your project folder</div>
+            <div class="step-desc">Open your terminal and run:</div>
+            <div class="code-block"><span class="comment"># In your website-export/ folder:</span>
+git init
+git add -A
+git commit -m "Initial commit"</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create a GitHub repo and push</div>
+            <div class="step-desc">Install the GitHub CLI if you haven't (<code style="font-size:12px;background:#f0f0f0;padding:1px 4px;border-radius:3px;">brew install gh</code>), then run:</div>
+            <div class="code-block">gh repo create digvijay-portfolio --public --push --source=.</div>
+            <div class="step-desc" style="margin-top:8px;">Or manually create a repo on github.com and push with the URL it gives you.</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Connect to Vercel</div>
+            <div class="step-desc">
+              1. Go to <strong>vercel.com</strong> → New Project<br>
+              2. Import your GitHub repo<br>
+              3. Settings: <strong>Framework Preset</strong> = Other, <strong>Build Command</strong> = (leave empty), <strong>Output Directory</strong> = <code style="font-size:12px;background:#f0f0f0;padding:1px 4px;border-radius:3px;">.</code><br>
+              4. Click Deploy<br><br>
+              After this, every <code style="font-size:12px;background:#f0f0f0;padding:1px 4px;border-radius:3px;">git push</code> = automatic Vercel deploy. ✅
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Test it</div>
+            <div class="step-desc">Go to the <a href="deploy.html" style="color:var(--accent);">Deploy tab</a> and click "Deploy Now". Your Vercel URL will go live in ~30 seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloudinary setup -->
+    <div class="form-section" style="margin-bottom:20px;">
+      <div class="form-section-title">Step 2: Cloudinary Image Uploads (Free)</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">
+        Cloudinary gives you free image hosting (25 GB/month). This lets you upload new images directly from the admin dashboard.
+      </p>
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a free Cloudinary account</div>
+            <div class="step-desc">Go to <strong>cloudinary.com</strong> and sign up for free.</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create an unsigned upload preset</div>
+            <div class="step-desc">
+              1. In Cloudinary dashboard → Settings → Upload<br>
+              2. Scroll to "Upload presets" → Add upload preset<br>
+              3. Set <strong>Signing Mode</strong> = <strong>Unsigned</strong><br>
+              4. Note the preset name (e.g., "ml_default")
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Enter your Cloudinary details below</div>
+            <div class="step-desc">Your cloud name is shown on the Cloudinary dashboard homepage.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <div class="form-group">
+          <label>Cloudinary Cloud Name</label>
+          <input type="text" id="cloud-name" placeholder="e.g. dxyz123abc" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;" />
+        </div>
+        <div class="form-group">
+          <label>Upload Preset Name</label>
+          <input type="text" id="upload-preset" placeholder="e.g. ml_default" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;" />
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px;">
+          <button class="btn btn-primary" onclick="saveCloudinary()">Save Cloudinary Settings</button>
+          <span id="cloudinary-saved" style="font-size:13px;color:var(--success);display:none;">✅ Saved!</span>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">
+          These are saved in your browser only — they're never sent to any server.
+        </p>
+      </div>
+    </div>
+
+    <!-- Status check -->
+    <div class="form-section">
+      <div class="form-section-title">Status Check</div>
+      <div id="status-list" style="font-size:14px;line-height:2;">
+        <div>🔍 Checking...</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toasts"></div>
+
+<script>
+// Load saved Cloudinary settings
+window.addEventListener('load', () => {
+  document.getElementById('cloud-name').value = localStorage.getItem('cloudinary_cloud') || '';
+  document.getElementById('upload-preset').value = localStorage.getItem('cloudinary_preset') || '';
+  checkStatus();
+});
+
+function saveCloudinary() {
+  const cloud = document.getElementById('cloud-name').value.trim();
+  const preset = document.getElementById('upload-preset').value.trim();
+  localStorage.setItem('cloudinary_cloud', cloud);
+  localStorage.setItem('cloudinary_preset', preset);
+  const indicator = document.getElementById('cloudinary-saved');
+  indicator.style.display = 'inline';
+  setTimeout(() => { indicator.style.display = 'none'; }, 2000);
+  showToast('Cloudinary settings saved!', 'success');
+  checkStatus();
+}
+
+async function checkStatus() {
+  const list = document.getElementById('status-list');
+  const items = [];
+
+  // Check data file
+  try {
+    const res = await fetch('/api/case-studies');
+    const data = await res.json();
+    items.push(`✅ Case studies loaded (${data.data?.length || 0} found)`);
+  } catch {
+    items.push('❌ Could not load case studies');
+  }
+
+  // Check git
+  try {
+    const res = await fetch('/api/git-status');
+    const data = await res.json();
+    if (data.notSetUp) {
+      items.push('⚠️ Git not set up — follow Step 1 above');
+    } else {
+      items.push(`✅ Git connected (branch: ${data.branch || 'main'})${data.remoteUrl ? ' → ' + data.remoteUrl : ''}`);
+    }
+  } catch {
+    items.push('⚠️ Could not check git status');
+  }
+
+  // Check Cloudinary
+  const cloud = localStorage.getItem('cloudinary_cloud');
+  const preset = localStorage.getItem('cloudinary_preset');
+  if (cloud && preset) {
+    items.push(`✅ Cloudinary configured (cloud: ${cloud}, preset: ${preset})`);
+  } else {
+    items.push('⚠️ Cloudinary not configured — follow Step 2 above');
+  }
+
+  list.innerHTML = items.map(i => `<div>${i}</div>`).join('');
+}
+
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toasts');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+  toast.innerHTML = `<span>${icons[type]}</span> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+</script>
+</body>
+</html>

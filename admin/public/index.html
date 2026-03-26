@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>Portfolio Admin</h2>
+      <span>Digvijay · v1.0</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item active"><span class="icon">📋</span> Case Studies</a>
+      <a href="deploy.html" class="nav-item"><span class="icon">🚀</span> Deploy</a>
+      <a href="setup.html" class="nav-item"><span class="icon">⚙️</span> Setup</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Case Studies</h1>
+        <p class="page-subtitle">Edit existing case studies or add new ones</p>
+      </div>
+      <button class="btn btn-primary" onclick="showNewModal()">
+        + Add New
+      </button>
+    </div>
+
+    <div class="cards-grid" id="cards-grid">
+      <!-- Cards loaded by JS -->
+      <div style="color:var(--text-muted);font-size:14px;padding:20px;">Loading...</div>
+    </div>
+  </main>
+</div>
+
+<!-- New Case Study Modal -->
+<div class="modal-overlay hidden" id="new-modal">
+  <div class="modal">
+    <h3>Add New Case Study</h3>
+    <p>Create a new case study by cloning an existing layout. You'll be able to edit all content after creation.</p>
+
+    <div class="form-group">
+      <label>Case Study ID <span class="hint">(no spaces, e.g. "my-project")</span></label>
+      <input type="text" id="new-id" placeholder="my-project" pattern="[a-z0-9\-]+" />
+    </div>
+    <div class="form-group">
+      <label>URL Slug <span class="hint">(path on your site, e.g. "my-project")</span></label>
+      <input type="text" id="new-slug" placeholder="my-project" />
+    </div>
+    <div class="form-group">
+      <label>Page Title</label>
+      <input type="text" id="new-title" placeholder="My Project - Digvijay Portfolio" />
+    </div>
+    <div class="form-group">
+      <label>Clone Layout From</label>
+      <select id="new-template">
+        <!-- Options loaded by JS -->
+      </select>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="hideNewModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="createCaseStudy()" id="create-btn">Create Case Study</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toasts"></div>
+
+<script>
+let caseStudies = [];
+
+async function loadCaseStudies() {
+  try {
+    const res = await fetch('/api/case-studies');
+    const data = await res.json();
+    caseStudies = data.data || [];
+    renderCards();
+    populateTemplateOptions();
+  } catch (e) {
+    showToast('Failed to load case studies', 'error');
+  }
+}
+
+function renderCards() {
+  const grid = document.getElementById('cards-grid');
+  if (caseStudies.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><h3>No case studies yet</h3><p>Add your first case study to get started.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = caseStudies.map(cs => `
+    <div class="case-card" onclick="editCase('${cs.id}')">
+      ${cs.coverImage
+        ? `<img class="card-thumb" src="${cs.coverImage}" alt="${cs.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : ''}
+      <div class="card-thumb-placeholder" style="${cs.coverImage ? 'display:none' : ''}">🖼️</div>
+      <div class="card-body">
+        <div class="card-title">${cs.title || cs.id}</div>
+        <div class="card-slug">/${cs.slug}</div>
+        <div class="card-actions" onclick="event.stopPropagation()">
+          <a href="editor.html?id=${cs.id}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="/preview-site/${cs.outputPath}" target="_blank" class="btn btn-secondary btn-sm">Preview</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function editCase(id) {
+  window.location.href = `editor.html?id=${id}`;
+}
+
+function populateTemplateOptions() {
+  const sel = document.getElementById('new-template');
+  sel.innerHTML = caseStudies.map(cs =>
+    `<option value="${cs.id}">${cs.title || cs.id}</option>`
+  ).join('');
+}
+
+function showNewModal() {
+  document.getElementById('new-modal').classList.remove('hidden');
+  document.getElementById('new-id').focus();
+
+  // Auto-sync id → slug
+  document.getElementById('new-id').oninput = function() {
+    const slug = this.value.toLowerCase().replace(/[^a-z0-9\-]/g, '-');
+    document.getElementById('new-slug').value = slug;
+    const title = document.getElementById('new-title');
+    if (!title.dataset.touched) {
+      title.value = this.value.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' - Digvijay Portfolio';
+    }
+  };
+  document.getElementById('new-title').oninput = function() {
+    this.dataset.touched = '1';
+  };
+}
+
+function hideNewModal() {
+  document.getElementById('new-modal').classList.add('hidden');
+}
+
+async function createCaseStudy() {
+  const id = document.getElementById('new-id').value.trim();
+  const slug = document.getElementById('new-slug').value.trim();
+  const title = document.getElementById('new-title').value.trim();
+  const templateId = document.getElementById('new-template').value;
+
+  if (!id || !slug) {
+    showToast('Please fill in the ID and Slug fields', 'error');
+    return;
+  }
+  if (!/^[a-z0-9\-]+$/.test(id)) {
+    showToast('ID can only contain lowercase letters, numbers, and hyphens', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('create-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Creating...';
+
+  try {
+    const res = await fetch('/api/case-studies', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, slug, templateId, meta: { title } }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Case study created!', 'success');
+      hideNewModal();
+      setTimeout(() => { window.location.href = `editor.html?id=${id}`; }, 800);
+    } else {
+      showToast(data.error || 'Failed to create', 'error');
+    }
+  } catch (e) {
+    showToast('Server error', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Create Case Study';
+  }
+}
+
+// Close modal on overlay click
+document.getElementById('new-modal').addEventListener('click', function(e) {
+  if (e.target === this) hideNewModal();
+});
+
+// Toast helper
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toasts');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<span>${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+loadCaseStudies();
+</script>
+</body>
+</html>
