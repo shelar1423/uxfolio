@@ -3057,6 +3057,371 @@
           "current": "https://framerusercontent.com/images/lo04LJ9uVo3nJHjij9aqFBZuVk.png"
         }
       ]
+    },
+    {
+      "id": "right",
+      "slug": "right",
+      "outputPath": "right/index.html",
+      "templateFile": "templates/right.html",
+      "coverImage": "https://res.cloudinary.com/dv5hapwlg/image/upload/v1774534397/yj3dmwkypkfkmbn8cpcf.jpg",
+      "meta": {
+        "title": "Right - Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Right - Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://res.cloudinary.com/dv5hapwlg/image/upload/v1774534397/yj3dmwkypkfkmbn8cpcf.jpg",
+        "canonical": "https://digvijayux.framer.website/articles/svaroots"
+      },
+      "_originalMeta": {
+        "title": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "description": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogTitle": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+        "ogDescription": "My UX design portfolio. Join me into my amazing world of UX",
+        "ogImage": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+        "canonical": "https://digvijayux.framer.website/articles/svaroots"
+      },
+      "contentMap": [
+        {
+          "original": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio",
+          "current": "Right - Digvijay Portfolio",
+          "label": "Svaroots: Co-Creating the Modern Indian Sneaker - Digvijay Portfolio"
+        },
+        {
+          "original": "Svaroots: Co-Creating the Modern Indian Sneaker",
+          "current": "Svaroots: Co-Creating the Modern Indian Sneaker",
+          "label": "Svaroots: Co-Creating the Modern Indian Sneaker"
+        },
+        {
+          "original": "End-to-End Product Design",
+          "current": "End-to-End Product Design",
+          "label": "End-to-End Product Design"
+        },
+        {
+          "original": "(Strategy, UI/UX, Front-End)",
+          "current": "(Strategy, UI/UX, Front-End)",
+          "label": "(Strategy, UI/UX, Front-End)"
+        },
+        {
+          "original": "01. The Market Opportunity",
+          "current": "01. The Market Opportunity",
+          "label": "01. The Market Opportunity"
+        },
+        {
+          "original": "Before pushing any pixels, I analyzed the mass-premium Indian footwear market to find actual business gaps. I discovered that major brands treat young buyers as passive consumers, completely missing out on the psychological value of co-creation. I anchored my product strategy on three major insights:",
+          "current": "Before pushing any pixels, I analyzed the mass-premium Indian footwear market to find actual business gaps. I discovered that major brands treat young buyers as passive consumers, completely missing out on the psychological value of co-creation. I anchored my product strategy on three major insights:",
+          "label": "Before pushing any pixels, I analyzed the mass-premium India..."
+        },
+        {
+          "original": "explicitly states that fashion brands can better cater to them by offering",
+          "current": "explicitly states that fashion brands can better cater to them by offering",
+          "label": "explicitly states that fashion brands can better cater to them by offering"
+        },
+        {
+          "original": "customizable products",
+          "current": "customizable products",
+          "label": "customizable products"
+        },
+        {
+          "original": ", the current market treats them as",
+          "current": ", the current market treats them as",
+          "label": ", the current market treats them as"
+        },
+        {
+          "original": "passive consumers",
+          "current": "passive consumers",
+          "label": "passive consumers"
+        },
+        {
+          "original": "\" rather than active participants. Furthermore,",
+          "current": "\" rather than active participants. Furthermore,",
+          "label": "\" rather than active participants. Furthermore,"
+        },
+        {
+          "original": "defines DIY fashion as customizing clothing themselves, actively",
+          "current": "defines DIY fashion as customizing clothing themselves, actively",
+          "label": "defines DIY fashion as customizing clothing themselves, actively"
+        },
+        {
+          "original": "seeking textile enhancements.",
+          "current": "seeking textile enhancements.",
+          "label": "seeking textile enhancements."
+        },
+        {
+          "original": "Research proves that when consumers are",
+          "current": "Research proves that when consumers are",
+          "label": "Research proves that when consumers are"
+        },
+        {
+          "original": "involved in customizing a produc",
+          "current": "involved in customizing a produc",
+          "label": "involved in customizing a produc"
+        },
+        {
+          "original": "willingness to pay",
+          "current": "willingness to pay",
+          "label": "willingness to pay"
+        },
+        {
+          "original": "without breaking the rigid manufacturing supply chain.",
+          "current": "without breaking the rigid manufacturing supply chain.",
+          "label": "without breaking the rigid manufacturing supply chain."
+        },
+        {
+          "original": "The industry lacks a",
+          "current": "The industry lacks a",
+          "label": "The industry lacks a"
+        },
+        {
+          "original": "dedicated sizing system for Indian foot anatomy",
+          "current": "dedicated sizing system for Indian foot anatomy",
+          "label": "dedicated sizing system for Indian foot anatomy"
+        },
+        {
+          "original": ", relying on Western molds. Additionally, brands curate inventory regionally but fail at",
+          "current": ", relying on Western molds. Additionally, brands curate inventory regionally but fail at",
+          "label": ", relying on Western molds. Additionally, brands curate inve..."
+        },
+        {
+          "original": "product-level modularity.",
+          "current": "product-level modularity.",
+          "label": "product-level modularity."
+        },
+        {
+          "original": "There was no system allowing a user to easily swap in authentic Indian textiles like a Kalamkari weave or an Ikat patch.",
+          "current": "There was no system allowing a user to easily swap in authentic Indian textiles like a Kalamkari weave or an Ikat patch.",
+          "label": "There was no system allowing a user to easily swap in authen..."
+        },
+        {
+          "original": "View Market Research &amp; Strategy (PDF)",
+          "current": "View Market Research &amp; Strategy (PDF)",
+          "label": "View Market Research &amp; Strategy (PDF)"
+        },
+        {
+          "original": "02. The Product &amp; The Experience",
+          "current": "02. The Product &amp; The Experience",
+          "label": "02. The Product &amp; The Experience"
+        },
+        {
+          "original": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is a digital platform and modular sneaker brand designed for active creation.",
+          "current": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is a digital platform and modular sneaker brand designed for active creation.",
+          "label": "Derived from \"Sva\" (Self) and \"Roots\" (Origin), Svaroots is ..."
+        },
+        {
+          "original": "The core product is a base sneaker engineered specifically for Indian foot anatomy. The upper features designated modular zones (like the side panel or heel tab).&nbsp;Instead of buying a static shoe, the user buys a canvas and a set of authentic, hyper-local fabric patches that physically attach to the shoe",
+          "current": "The core product is a base sneaker engineered specifically for Indian foot anatomy. The upper features designated modular zones (like the side panel or heel tab).&nbsp;Instead of buying a static shoe, the user buys a canvas and a set of authentic, hyper-local fabric patches that physically attach to the shoe",
+          "label": "The core product is a base sneaker engineered specifically f..."
+        },
+        {
+          "original": "The user journey bridges the digital and physical worlds. The user goes online, visually builds their shoe using a digital customizer, and receives a physical kit to assemble at home.&nbsp;This satisfies the user's craving for DIY fashion while creating a deep, psychological \"IKEA effect\" bond with the product.",
+          "current": "The user journey bridges the digital and physical worlds. The user goes online, visually builds their shoe using a digital customizer, and receives a physical kit to assemble at home.&nbsp;This satisfies the user's craving for DIY fashion while creating a deep, psychological \"IKEA effect\" bond with the product.",
+          "label": "The user journey bridges the digital and physical worlds. Th..."
+        },
+        {
+          "original": "03. Collaborative Branding &amp; Visual Identity",
+          "current": "03. Collaborative Branding &amp; Visual Identity",
+          "label": "03. Collaborative Branding &amp; Visual Identity"
+        },
+        {
+          "original": "To bring Svaroots to life digitally, I needed a visual foundation that balanced traditional Indian craft with modern e-commerce usability.",
+          "current": "To bring Svaroots to life digitally, I needed a visual foundation that balanced traditional Indian craft with modern e-commerce usability.",
+          "label": "To bring Svaroots to life digitally, I needed a visual found..."
+        },
+        {
+          "original": "Logo Explorations:",
+          "current": "Logo Explorations:",
+          "label": "Logo Explorations:"
+        },
+        {
+          "original": "Our logo uses a spiral to represent self-expression, shaped as a shoe print to reflect sneakers as a personal medium for expression. Combined with a traditional Indian motif and enclosed within a patch form, the mark reflects cultural identity and the reversible patch system of the brand.",
+          "current": "Our logo uses a spiral to represent self-expression, shaped as a shoe print to reflect sneakers as a personal medium for expression. Combined with a traditional Indian motif and enclosed within a patch form, the mark reflects cultural identity and the reversible patch system of the brand.",
+          "label": "Our logo uses a spiral to represent self-expression, shaped ..."
+        },
+        {
+          "original": "Our brand color palette is meant to bridge marketing communications and product interface in order to enhance familiarity and visual recognition.",
+          "current": "Our brand color palette is meant to bridge marketing communications and product interface in order to enhance familiarity and visual recognition.",
+          "label": "Our brand color palette is meant to bridge marketing communi..."
+        },
+        {
+          "original": "Represents the \"Trend.\" It is the color of the global urban landscape, bold, fast-paced, and modern. It signifies the energy of self-expression and the \"Manhattan\" ambition of the brand.",
+          "current": "Represents the \"Trend.\" It is the color of the global urban landscape, bold, fast-paced, and modern. It signifies the energy of self-expression and the \"Manhattan\" ambition of the brand.",
+          "label": "Represents the \"Trend.\" It is the color of the global urban ..."
+        },
+        {
+          "original": "Represents the \"Traditional.\" A deep, reliable tone that mirrors the historical Indigo dyes used in Indian textiles. It anchors our innovative Velcro-patch system in authenticity and craft.",
+          "current": "Represents the \"Traditional.\" A deep, reliable tone that mirrors the historical Indigo dyes used in Indian textiles. It anchors our innovative Velcro-patch system in authenticity and craft.",
+          "label": "Represents the \"Traditional.\" A deep, reliable tone that mir..."
+        },
+        {
+          "original": "Used to highlight versatility and sustainability, the bottle green adds balance to the palette while reinforcing the brand’s connection to craft, adaptability, and mindful self-expression.",
+          "current": "Used to highlight versatility and sustainability, the bottle green adds balance to the palette while reinforcing the brand’s connection to craft, adaptability, and mindful self-expression.",
+          "label": "Used to highlight versatility and sustainability, the bottle..."
+        },
+        {
+          "original": "View Full Brand Guidelines &amp; Style Guide (PDF)",
+          "current": "View Full Brand Guidelines &amp; Style Guide (PDF)",
+          "label": "View Full Brand Guidelines &amp; Style Guide (PDF)"
+        },
+        {
+          "original": "05. Information Architecture",
+          "current": "05. Information Architecture",
+          "label": "05. Information Architecture"
+        },
+        {
+          "original": "06. Foundational Design System",
+          "current": "06. Foundational Design System",
+          "label": "06. Foundational Design System"
+        },
+        {
+          "original": "07. Website Design",
+          "current": "07. Website Design",
+          "label": "07. Website Design"
+        },
+        {
+          "original": "Customization Page (3D Lab)",
+          "current": "Customization Page (3D Lab)",
+          "label": "Customization Page (3D Lab)"
+        },
+        {
+          "original": "Our Artisans Screen",
+          "current": "Our Artisans Screen",
+          "label": "Our Artisans Screen"
+        },
+        {
+          "original": "08. Dashboard Design",
+          "current": "08. Dashboard Design",
+          "label": "08. Dashboard Design"
+        },
+        {
+          "original": "I designed a comprehensive Content &amp; CMS Dashboard to handle end-to-end operations.",
+          "current": "I designed a comprehensive Content &amp; CMS Dashboard to handle end-to-end operations.",
+          "label": "I designed a comprehensive Content &amp; CMS Dashboard to ha..."
+        },
+        {
+          "original": "Inventory Management Page",
+          "current": "Inventory Management Page",
+          "label": "Inventory Management Page"
+        },
+        {
+          "original": "Click here for Working Prototype",
+          "current": "Click here for Working Prototype",
+          "label": "Click here for Working Prototype"
+        },
+        {
+          "original": "09. Key Learnings",
+          "current": "09. Key Learnings",
+          "label": "09. Key Learnings"
+        },
+        {
+          "original": "Taking Svaroots from zero to one taught me that a beautiful UI cannot hide a broken system. Bridging the gap between the B2C consumer customizer and the B2B admin dashboard proved that successful product design requires viewing the platform as a living ecosystem. Hand-coding the MVP solidified my belief that the best design decisions are made when you deeply understand both business strategy and technical constraints.",
+          "current": "Taking Svaroots from zero to one taught me that a beautiful UI cannot hide a broken system. Bridging the gap between the B2C consumer customizer and the B2B admin dashboard proved that successful product design requires viewing the platform as a living ecosystem. Hand-coding the MVP solidified my belief that the best design decisions are made when you deeply understand both business strategy and technical constraints.",
+          "label": "Taking Svaroots from zero to one taught me that a beautiful ..."
+        },
+        {
+          "original": "No headings found on page",
+          "current": "No headings found on page",
+          "label": "No headings found on page"
+        },
+        {
+          "original": "typeof document",
+          "current": "typeof document",
+          "label": "typeof document"
+        },
+        {
+          "original": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "current": "= sampleSize / 2);\n        return hasSignals && hasStructure;\n    }\n\n    /** Scan the DOM for accordion-shaped groups.\n     *  Returns Array",
+          "label": "= sampleSize / 2);\n        return hasSignals && hasStructure..."
+        }
+      ],
+      "imageMap": [
+        {
+          "original": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png",
+          "current": "https://framerusercontent.com/images/boiPzijy4RnrNjlntjnb612KGQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png",
+          "current": "https://framerusercontent.com/images/Vwj7OmY7lOwh5k3FGJgHVAyOJzU.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png",
+          "current": "https://framerusercontent.com/images/MAWWEQbmXuB0NW2oboUC8pGoI8Q.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/f3iKtoqPNgx18JnHC1vRJ3kzo.png",
+          "current": "https://framerusercontent.com/images/f3iKtoqPNgx18JnHC1vRJ3kzo.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/Jjqw7gaYMOBiFehCRvyVEgTL4s.png",
+          "current": "https://framerusercontent.com/images/Jjqw7gaYMOBiFehCRvyVEgTL4s.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/U44SVs9kd3pfzS0dP2gzYUv7c.png",
+          "current": "https://framerusercontent.com/images/U44SVs9kd3pfzS0dP2gzYUv7c.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/lsPmtZT4aqTgvziuzhVSCPaK8.png",
+          "current": "https://framerusercontent.com/images/lsPmtZT4aqTgvziuzhVSCPaK8.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/7VGab5mkPnQT4fqon4OD2NxjQF0.gif",
+          "current": "https://framerusercontent.com/images/7VGab5mkPnQT4fqon4OD2NxjQF0.gif"
+        },
+        {
+          "original": "https://framerusercontent.com/images/q9YvNx6zJenxENZ8TRe2ygzAb4.png",
+          "current": "https://framerusercontent.com/images/q9YvNx6zJenxENZ8TRe2ygzAb4.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/VRSJlWlqml4xb2O9zhpxIMCeu90.png",
+          "current": "https://framerusercontent.com/images/VRSJlWlqml4xb2O9zhpxIMCeu90.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/MMvrQqbng8KEkGedoO1FlCRuQzQ.png",
+          "current": "https://framerusercontent.com/images/MMvrQqbng8KEkGedoO1FlCRuQzQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/SaE5aeM3loOvL6cTwYJsPy4yk00.png",
+          "current": "https://framerusercontent.com/images/SaE5aeM3loOvL6cTwYJsPy4yk00.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/hPlfLro0E88x2N9AkcywKuRr00.png",
+          "current": "https://framerusercontent.com/images/hPlfLro0E88x2N9AkcywKuRr00.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/YUm0XErA6z9YCAz1zpRGprfI.jpg",
+          "current": "https://framerusercontent.com/images/YUm0XErA6z9YCAz1zpRGprfI.jpg"
+        },
+        {
+          "original": "https://framerusercontent.com/images/hKGi9sVrLPTkGtBPaKaW7m34g.png",
+          "current": "https://framerusercontent.com/images/hKGi9sVrLPTkGtBPaKaW7m34g.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/vYnwl366oxoMD2EONxxssvcsPE.png",
+          "current": "https://framerusercontent.com/images/vYnwl366oxoMD2EONxxssvcsPE.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/OYDSJNmKOIGp2OhY9Voki4MgZQ.png",
+          "current": "https://framerusercontent.com/images/OYDSJNmKOIGp2OhY9Voki4MgZQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/AxmPvYQkM9nSL7LozCNbzh3cotQ.png",
+          "current": "https://framerusercontent.com/images/AxmPvYQkM9nSL7LozCNbzh3cotQ.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/0vd8Cx2XbJKasjZtYKMNtHKFok.png",
+          "current": "https://framerusercontent.com/images/0vd8Cx2XbJKasjZtYKMNtHKFok.png"
+        },
+        {
+          "original": "https://framerusercontent.com/images/lo04LJ9uVo3nJHjij9aqFBZuVk.png",
+          "current": "https://framerusercontent.com/images/lo04LJ9uVo3nJHjij9aqFBZuVk.png"
+        }
+      ],
+      "card": {
+        "name": "Right",
+        "category": "Case Study",
+        "tagline": "ddddd",
+        "description": "azasasas",
+        "thumbnail": "https://res.cloudinary.com/dv5hapwlg/image/upload/v1774534419/hsbzccc2eewxgbfhyu7b.webp",
+        "bgColor": "#f0f0f0"
+      }
     }
   ]
 }
