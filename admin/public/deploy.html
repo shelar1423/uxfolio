@@ -116,7 +116,7 @@ async function deploy() {
     });
     const data = await res.json();
     if (data.success) {
-      showLog('✅ ' + data.message + '\n\nYour Vercel site will be live in ~30 seconds.');
+      showLog('✅ ' + data.message + '\n\nYour site will be live at <a href="https://uxfolio.vercel.app" target="_blank">uxfolio.vercel.app</a> in ~30 seconds.');
       showToast(data.message, 'success');
       loadGitStatus();
     } else {

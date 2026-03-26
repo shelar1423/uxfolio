@@ -203,7 +203,7 @@ app.post('/api/deploy', (req, res) => {
     }
     runGit(`git commit -m "${commitMsg.replace(/"/g, "'")}"`);
     runGit('git push');
-    res.json({ success: true, message: '🚀 Deployed! Vercel will go live in ~30 seconds.' });
+    res.json({ success: true, message: '🚀 Deployed! Live at https://uxfolio.vercel.app in ~30 seconds.' });
   } catch (err) {
     const msg = err.stderr?.toString() || err.message;
     // Common: not a git repo yet
