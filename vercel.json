@@ -1,0 +1,10 @@
+{
+  "outputDirectory": ".",
+  "buildCommand": "node scripts/build.js",
+  "rewrites": [
+    { "source": "/articles/svaroots", "destination": "/articles/svaroots/index.html" },
+    { "source": "/broken-pots-2", "destination": "/broken-pots-2/index.html" },
+    { "source": "/emerald", "destination": "/emerald/index.html" },
+    { "source": "/origin", "destination": "/origin/index.html" }
+  ]
+}
